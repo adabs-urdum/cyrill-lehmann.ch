@@ -20,6 +20,7 @@
         background-image: radial-gradient(circle at center, $Blue, $BlueDarkest);
         color: $BlueDarkest;
         overflow: hidden;
+        z-index: 1;
         &__wrapper {
             position: relative;
             display: flex;
@@ -137,7 +138,7 @@
                 height: 100%;
                 transform: translate(-50%, -50%);
                 z-index: -1;
-                transition: background-color 0.5s ease-out, height 0.35s ease-in-out, width 0.35s ease-in-out, border-radius 0.3s linear;
+                transition: background-color 0.5s ease-out, height 0.35s ease-in-out, width 0.35s ease-in-out, border-radius 0.3s ease-in;
                 pointer-events: none;
             }
             &:hover {
@@ -146,6 +147,7 @@
                     height: 120vmax;
                     border-radius: 50%;
                     z-index: -1;
+                    box-shadow: $BlueDarkest 0 0 $BS*30;
                 }
             }
         }

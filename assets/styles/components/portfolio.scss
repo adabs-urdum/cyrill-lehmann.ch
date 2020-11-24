@@ -1,0 +1,19 @@
+// Styles
+// name mixin after scss portfolio
+@mixin portfolio($type: "") {
+    // get Basesize in correct relation to design width
+    $BS: getBaseSize($type);
+    .portfolio {
+        color: $VioletDarkest;
+        background-image: radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmax);
+    }
+}
+
+// Add portfolio
+@include portfolio();
+// Add basic portfolio with breakpoints
+@each $Breakpoint in $Breakpoints {
+    @include breakpoint(#{$Breakpoint}) {
+        @include portfolio(#{$Breakpoint});
+    }
+}

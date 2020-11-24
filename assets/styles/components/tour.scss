@@ -1,0 +1,93 @@
+// Styles
+// name mixin after scss tour
+@mixin tour($type: "") {
+    // get Basesize in correct relation to design width
+    $BS: getBaseSize($type);
+    .tour {
+        display: block;
+        overflow-y: auto;
+        background-image: radial-gradient(circle at center, $Green 0, $GreenDarkest 100vmin);
+        scroll-snap-type: y mandatory;
+        color: $GreenDarkest;
+        &__stage {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100vh;
+            padding: $BS*256;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            &--1 {
+                padding: $BS*64 $BS*320 $BS*64 $BS*600;
+            }
+        }
+        &__stageDivider {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: calc(100% - #{$BS} * 1024);
+            transform: translateX(-50%) translateY($BS * -64);
+            box-shadow: $GreenDarkest 0 0 $BS*50;
+            z-index: 10;
+            &.tour__customThemeImg {
+                transform: translate(-50%, 50%);
+            }
+            &--default {
+                width: $BS * 16;
+                height: $BS * 48;
+                background-color: transparent;
+                border-radius: $BS * 8;
+                overflow: hidden;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 50%;
+                    background-color: $Green;
+                    animation: SCROLLDOWN infinite 5s ease-out;
+                    animation-delay: 3s;
+                }
+                @keyframes SCROLLDOWN {
+                    0% {
+                        height: 0;
+                        opacity: 0;
+                    }
+                    5% {
+                        height: 0;
+                        opacity: 1;
+                    }
+                    45% {
+                        height: 100%;
+                        opacity: 1;
+                    }
+                    50% {
+                        height: 100%;
+                        opacity: 0;
+                    }
+                    100% {
+                        height: 100%;
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+        .head {
+            position: absolute;
+            mix-blend-mode: normal;
+        }
+    }
+}
+
+// Add tour
+@include tour();
+// Add basic tour with breakpoints
+@each $Breakpoint in $Breakpoints {
+    @include breakpoint(#{$Breakpoint}) {
+        @include tour(#{$Breakpoint});
+    }
+}

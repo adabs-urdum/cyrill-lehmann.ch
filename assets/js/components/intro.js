@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import Person from "./Person";
+import Portfolio from "./Portfolio";
+import Tour from "./Tour";
 import * as BABYLON from "babylonjs";
 
 class Intro {
@@ -26,13 +28,13 @@ class Intro {
         y: Math.round((200 / window.innerHeight) * e.clientY - 100) / 100,
       };
 
-      this.head.headObj.rotation.x = this.mousePosRel.y * 0.6;
+      this.head.headObj.rotation.x = this.mousePosRel.y * 0.7;
       this.head.headObj.rotation.y = this.mousePosRel.x * -1.1;
       this.head.headObj.rotation.z = this.mousePosRel.x * 0.3;
 
       this.head.headObj.position.x =
-        this.mousePosRel.x * this.head.leftLimit * 0.3;
-      this.head.headObj.position.y = this.mousePosRel.y * 50 + 20;
+        this.mousePosRel.x * this.head.leftLimit * 0.35;
+      this.head.headObj.position.y = this.mousePosRel.y * 40 + 20;
 
       // this.head.scene.registerBeforeRender(this.moveHead);
     }
@@ -52,14 +54,18 @@ class Intro {
   onClickNav = (e, type) => {
     console.log(type);
     switch (type) {
-      case "person":
+      case "contact":
         this.currentStage = new Person();
         break;
-      case "kontakt":
-        this.currentStage = new Person();
+      case "tour":
+        this.currentStage = new Tour({
+          head: this.head,
+          headElement: this.headElement,
+          introSection: this.section,
+        });
         break;
-      case "arbeit":
-        this.currentStage = new Person();
+      case "portfolio":
+        this.currentStage = new Portfolio();
         break;
       default:
         break;
@@ -72,36 +78,36 @@ class Intro {
         <div className="intro__wrapper">
           <div className="intro__rows">
             <div className="intro__row">
-              <h1 className="intro__title">Cyrill Lehmann</h1>
-            </div>
+              <h1 className="intro__title"> Cyrill Lehmann </h1>{" "}
+            </div>{" "}
             <div className="intro__row">
-              <h1 className="intro__title">aka adabs urdum</h1>
-            </div>
+              <h1 className="intro__title"> aka adabs urdum </h1>{" "}
+            </div>{" "}
             <div className="intro__row">
-              <h1 className="intro__title">Freelance web developer</h1>
-            </div>
-          </div>
-        </div>
+              <h1 className="intro__title"> Freelance web developer </h1>{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>{" "}
         <div className="intro__list">
           <button
-            onClick={(e) => this.onClickNav(e, "person")}
+            onClick={(e) => this.onClickNav(e, "contact")}
             className="intro__button button"
           >
-            Kontakt
-          </button>
+            Kontakt{" "}
+          </button>{" "}
           <button
-            onClick={(e) => this.onClickNav(e, "kontakt")}
+            onClick={(e) => this.onClickNav(e, "tour")}
             className="intro__button button button--secondary"
           >
-            Tour
-          </button>
+            Tour{" "}
+          </button>{" "}
           <button
-            onClick={(e) => this.onClickNav(e, "arbeit")}
+            onClick={(e) => this.onClickNav(e, "portfolio")}
             className="intro__button button"
           >
-            Portfolio
-          </button>
-        </div>
+            Portfolio{" "}
+          </button>{" "}
+        </div>{" "}
       </Fragment>
     );
 

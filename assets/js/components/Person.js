@@ -9,25 +9,38 @@ class Person extends Overlay {
     console.log("new Person");
     this.section = document.querySelector(".overlay");
     this.render();
-
-    // this.dialogue =
   }
 
   render = () => {
     const markup = (
-      <section className="person">
-        <div className="person__wrapper">
-          <div className="person__bio">
-            <h2>Oi! Ich bin Cyrill.</h2>
-            <p>
-              Ich code gerne und kann glücklicherweise Geld damit verdienen.
-            </p>
-          </div>
+      <Fragment>
+        <div className="controls__close controls__close--person">
+          <button
+            className="controls__icon controls__icon--close button"
+            onClick={(e) => {
+              this.closePanel(this.section);
+            }}
+          >
+            &times;
+          </button>
         </div>
-      </section>
+        <section className="person overlay__content">
+          <div className="person__wrapper">
+            <div className="person__bio">
+              <h2>Oi! Ich bin Cyrill.</h2>
+              <p>
+                Ich code gerne und kann glücklicherweise Geld damit verdienen.
+              </p>
+            </div>
+          </div>
+
+          {this.acquire.jsx}
+        </section>
+      </Fragment>
     );
     ReactDOM.render(markup, this.section, () => {
-      console.log("rendered");
+      this.section.style.display = "flex";
+      this.section.classList.add("open");
     });
   };
 }
