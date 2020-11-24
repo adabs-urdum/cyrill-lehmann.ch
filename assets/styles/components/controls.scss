@@ -1,0 +1,64 @@
+// Styles
+// name mixin after scss controls
+@mixin controls($type: "") {
+    // get Basesize in correct relation to design width
+    $BS: getBaseSize($type);
+    .controls {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        &__shittyBrowser {
+            position: absolute;
+            top: $BS * 64;
+            right: $BS * 64;
+            z-index: 1;
+            &Icon {
+                padding: $BS*16 $BS*24 $BS*15;
+                line-height: 100%;
+                margin: 0;
+                background-color: transparent;
+                &:hover {
+                    background-color: $Blue;
+                }
+            }
+            &Text {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                white-space: nowrap;
+                color: $Yellow;
+                transform: translate(-100%, -50%);
+                opacity: 0;
+                transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+                z-index: -1;
+                pointer-events: none;
+            }
+            &Checkbox {
+                display: none;
+                &:checked {
+                    &~.controls__shittyBrowser {
+                        &Icon {
+                            color: $BlueDarkest;
+                            background-color: $Blue;
+                        }
+                        &Text {
+                            opacity: 1;
+                            transform: translate(calc(-100% - #{$BS} * 16), -50%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Add controls
+@include controls();
+// Add basic controls with breakpoints
+@each $Breakpoint in $Breakpoints {
+    @include breakpoint(#{$Breakpoint}) {
+        @include controls(#{$Breakpoint});
+    }
+}

@@ -1,0 +1,41 @@
+// Styles
+// name mixin after scss person
+@mixin person($type: "") {
+    // get Basesize in correct relation to design width
+    $BS: getBaseSize($type);
+    .person {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: $Yellow;
+        background-image: radial-gradient(circle at center, $Yellow, $YellowDarkest);
+        animation: forwards FADEIN 0.2s ease-out;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $YellowDarkest;
+        @keyframes FADEIN {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        &__monologue {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+}
+
+// Add person
+@include person();
+// Add basic person with breakpoints
+@each $Breakpoint in $Breakpoints {
+    @include breakpoint(#{$Breakpoint}) {
+        @include person(#{$Breakpoint});
+    }
+}

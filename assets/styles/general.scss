@@ -1,0 +1,208 @@
+// Styles
+// name mixin after scss component
+@mixin styles($type: "") {
+    // get Basesize in correct relation to design width
+    $BS: getBaseSize($type);
+    html {
+        font-family: $FontFamilyMain;
+        font-weight: 300;
+        // only set font-size here, if really needed
+        // font-size: 16px;
+        line-height: 143%;
+        color: $Black;
+        background-color: $Black;
+        scroll-behavior: smooth;
+    }
+    body {
+        @include bsFontSize($BS, $BaseRemSize);
+        line-height: 190%;
+        max-width: $ScreendesignWidthMAX + 0px;
+        margin: 0 auto;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: $FontFamilyTitle;
+        line-height: 143%;
+        font-weight: 900;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    h1 {
+        @include bsFontSize($BS, 62);
+    }
+    h2 {
+        @include bsFontSize($BS, 44);
+    }
+    h3 {
+        @include bsFontSize($BS, 36);
+    }
+    h4 {
+        @include bsFontSize($BS, 26);
+    }
+    h5,
+    h6 {
+        @include bsFontSize($BS, 20);
+    }
+    input,
+    button {
+        font-family: $FontFamilyMain;
+    }
+    p {
+        padding: 0;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    ul,
+    li {
+        padding: 0;
+        list-style: none;
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    li {
+        // position: relative;
+        padding-left: $BS * 20;
+        &:before {
+            content: "\2022";
+            margin-left: $BS * -20;
+            margin-right: $BS * 10;
+            font-size: 110%;
+            line-height: 50%;
+        }
+    }
+    a {
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border-bottom: $BS $Black solid;
+        }
+        &:hover {}
+        &:active {}
+    }
+    code {
+        display: block;
+        background-color: $Black;
+        color: $White;
+        border-radius: $BS * 2;
+        padding: $BS * 14 $BS * 16 $BS * 16;
+        margin: $BS * 16 0;
+    }
+    .button {
+        box-sizing: border-box;
+        position: relative;
+        display: inline-block;
+        font-weight: 700;
+        color: $Blue;
+        padding: $BS * 18 $BS * 50 $BS * 17;
+        text-transform: uppercase;
+        transition: color 0.3s ease-out;
+        text-decoration: none;
+        margin-right: $BS * 16;
+        margin-bottom: $BS * 16;
+        background-color: transparent;
+        transition: background-color 0.3s ease-out;
+        cursor: pointer;
+        &:hover,
+        &:checked {
+            color: $BlueDarkest;
+            &:after {
+                background-color: $Blue;
+            }
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            box-sizing: border-box;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: $BS*3 $Blue solid;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.3s ease-out, height 0.2s ease-out, width 0.4s ease-out, border-color 0.3s ease-out;
+            pointer-events: none;
+            z-index: -1;
+        }
+        &--secondary {
+            color: $Blue;
+            background-color: $BlueDarkest;
+            &:after {
+                border-color: $BlueDarkest;
+            }
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+    button {
+        cursor: pointer;
+        color: inherit;
+        font-family: inherit;
+        background: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        border: none;
+        text-align: inherit;
+    }
+    strong {
+        font-weight: 700;
+    }
+    img,
+    canvas {
+        display: block;
+    }
+    .mobile_only {
+        display: none;
+    }
+    .desktop_only {
+        display: block;
+    }
+    .head {
+        position: fixed;
+        z-index: 100;
+        pointer-events: none;
+    }
+}
+
+// Add styles
+@include styles();
+// Add basic styles with breakpoints
+@each $Breakpoint in $Breakpoints {
+    @include breakpoint(#{$Breakpoint}) {
+        @include styles(#{$Breakpoint});
+    }
+}
+
+// Add custom styles with breakpoints
+@include breakPointS() {
+    .mobile_only {
+        display: block;
+    }
+    .desktop_only {
+        display: none;
+    }
+}

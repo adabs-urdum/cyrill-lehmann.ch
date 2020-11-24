@@ -1,0 +1,11 @@
+@import "normalize";
+@import "variables";
+@import "fonts";
+@import "mixins";
+@import "functions";
+@import "general";
+@import "./components/panel.scss";
+@import "./components/intro.scss";
+@import "./components/projects.scss";
+@import "./components/person.scss";
+@import "./components/controls.scss";
