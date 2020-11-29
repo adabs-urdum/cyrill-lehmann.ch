@@ -27,14 +27,7 @@ class Acquire {
           </div> */}
 
           <div className="acquire__titleWrapper">
-            <span className="acquire__title acquire__title--upper">Du</span>
-            <div className="acquire__title acquire__title--lower">
-              <span>hast Fragen?</span>
-              <span>hast ein passendes Projekt?</span>
-              <span>suchst schon lange einen Entwickler?</span>
-              <span>findest meine Webseite echt cool?</span>
-              <span>willst mir einfach so etwas sagen?</span>
-            </div>
+            <h1>Deine Meinung</h1>
           </div>
           <p className="acquire__cta button button--secondary">Los geht's</p>
         </div>

@@ -8,10 +8,16 @@ import * as BABYLON from "babylonjs";
 class Intro {
   constructor(init) {
     console.log("new Intro");
+    this.controller = init.controller;
     this.section = document.querySelector(".intro");
     this.headElement = document.querySelector(".head");
     this.head = init.head;
     this.currentStage = null;
+    this.loader = init.loader;
+
+    // add assets for tour
+    this.loader.add("./../../dist/img/wpcustomtheme.jpg");
+    this.loader.add("./../../dist/img/blender.jpg");
 
     this.addEventListeners();
     this.render();
@@ -28,47 +34,19 @@ class Intro {
         y: Math.round((200 / window.innerHeight) * e.clientY - 100) / 100,
       };
 
-      this.head.headObj.rotation.x = this.mousePosRel.y * 0.7;
-      this.head.headObj.rotation.y = this.mousePosRel.x * -1.1;
-      this.head.headObj.rotation.z = this.mousePosRel.x * 0.3;
+      if (this.head.ready) {
+        this.head.headObj.rotation.x = this.mousePosRel.y * 0.7;
+        this.head.headObj.rotation.y = this.mousePosRel.x * -1.1;
+        this.head.headObj.rotation.z = this.mousePosRel.x * 0.3;
 
-      this.head.headObj.position.x =
-        this.mousePosRel.x * this.head.leftLimit * 0.35;
-      this.head.headObj.position.y = this.mousePosRel.y * 40 + 20;
-
-      // this.head.scene.registerBeforeRender(this.moveHead);
+        this.head.headObj.position.x =
+          this.mousePosRel.x * this.head.leftLimit * 0.35;
+        this.head.headObj.position.y = this.mousePosRel.y * 40 + 20;
+      }
     }
-    this.head.scene.unregisterBeforeRender(this.head.rotateHead);
-  };
 
-  moveHead = () => {
-    console.log(this.head.scene.isActiveMesh(this.head.headObj));
-    console.log(this.head.headObj.position.x);
-    console.log(this.head.leftLimit);
-    // if (this.head.scene.isActiveMesh(this.head.headObj)) {
-    //   this.head.headObj.position.x -= this.mousePosRel.x;
-    //   this.head.headObj.position.y -= this.mousePosRel.y;
-    // }
-  };
-
-  onClickNav = (e, type) => {
-    console.log(type);
-    switch (type) {
-      case "contact":
-        this.currentStage = new Person();
-        break;
-      case "tour":
-        this.currentStage = new Tour({
-          head: this.head,
-          headElement: this.headElement,
-          introSection: this.section,
-        });
-        break;
-      case "portfolio":
-        this.currentStage = new Portfolio();
-        break;
-      default:
-        break;
+    if (this.head.ready) {
+      this.head.scene.unregisterBeforeRender(this.head.rotateHead);
     }
   };
 
@@ -90,19 +68,19 @@ class Intro {
         </div>{" "}
         <div className="intro__list">
           <button
-            onClick={(e) => this.onClickNav(e, "contact")}
+            onClick={(e) => this.controller.setRoute("contact")}
             className="intro__button button"
           >
             Kontakt{" "}
           </button>{" "}
           <button
-            onClick={(e) => this.onClickNav(e, "tour")}
+            onClick={(e) => this.controller.setRoute("tour/1")}
             className="intro__button button button--secondary"
           >
             Tour{" "}
           </button>{" "}
           <button
-            onClick={(e) => this.onClickNav(e, "portfolio")}
+            onClick={(e) => this.controller.setRoute("portfolio")}
             className="intro__button button"
           >
             Portfolio{" "}

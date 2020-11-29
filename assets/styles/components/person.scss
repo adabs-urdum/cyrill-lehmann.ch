@@ -5,7 +5,38 @@
     $BS: getBaseSize($type);
     .person {
         color: $YellowDarkest;
-        background-image: radial-gradient(circle at center, $Yellow 0, $YellowDarkest 100vmax);
+        background-image: radial-gradient(circle at center, $Yellow 0, $YellowDarkest 100vmin);
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            span {
+                display: inline-block;
+                font-family: $FontFamilyMain;
+                font-weight: 400;
+            }
+        }
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            span {
+                margin-left: $BS * 14;
+            }
+        }
+        p {
+            span {
+                display: inline-block;
+                font-family: $FontFamilyTitle;
+                margin-right: $BS * 12;
+            }
+        }
+        &__buttonWrapper {
+            margin-top: $BS * 64;
+        }
     }
 }
 

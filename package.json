@@ -43,6 +43,7 @@
         "react-dom": "latest",
         "babylonjs": "latest",
         "babylonjs-materials": "latest",
-        "babylonjs-loaders": "latest"
+        "babylonjs-loaders": "latest",
+        "preloader": "latest"
     }
 }

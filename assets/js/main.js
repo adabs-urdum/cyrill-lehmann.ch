@@ -5,6 +5,8 @@ import GACE from "./googleAnalyticsCustomEvents";
 import BaseSize from "./helpers/BS";
 import Intro from "./components/intro";
 import Head from "./components/Head";
+import Controller from "./components/Controller";
+import Loader from "./components/Loader";
 
 Array.prototype.shuffle = function() {
     return this.sort(function() {
@@ -26,11 +28,26 @@ document.addEventListener("DOMContentLoaded", function() {
     //   id: "UA-164327129-1",
     // });
 
+    const loader = new Loader();
+
     const BS = new BaseSize();
 
-    const head = new Head();
+    const head = new Head({ loader: loader });
 
-    const intro = new Intro({
+    loader.loaderComplete = () => {
+        head.onLoaderReady();
+    };
+
+    const controller = new Controller({
+        loader: loader,
         head: head,
     });
+
+    const intro = new Intro({
+        loader: loader,
+        controller: controller,
+        head: head,
+    });
+
+    loader.load();
 });

@@ -8,9 +8,11 @@ class Overlay {
     }
 
     beforeClose = () => {};
+    evenBeforeClose = () => {};
 
     closePanel = (section) => {
         console.log("close panel");
+        this.evenBeforeClose();
         this.beforeClose();
         section.classList.add("close");
 

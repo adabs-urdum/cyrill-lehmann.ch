@@ -171,6 +171,56 @@
         border: none;
         text-align: inherit;
     }
+    .tour__stage {
+        .button {
+            color: $Green;
+            &:hover,
+            &:checked {
+                color: $GreenDarkest;
+                &:after {
+                    background-color: $Green;
+                }
+            }
+            &:after {
+                border-color: $Green;
+            }
+            &--secondary {
+                color: $Green;
+                background-color: $GreenDarkest;
+                &:after {
+                    border-color: $GreenDarkest;
+                }
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    .person {
+        .button {
+            color: $Yellow;
+            &:hover,
+            &:checked {
+                color: $YellowDarkest;
+                &:after {
+                    background-color: $Yellow;
+                }
+            }
+            &:after {
+                border-color: $Yellow;
+            }
+            &--secondary {
+                color: $Yellow;
+                background-color: $YellowDarkest;
+                &:after {
+                    border-color: $YellowDarkest;
+                }
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
     strong {
         font-weight: 700;
     }

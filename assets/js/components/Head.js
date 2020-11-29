@@ -3,8 +3,12 @@ import "babylonjs-loaders";
 import "babylonjs-materials";
 
 class Head {
-    constructor() {
+    constructor(init) {
         console.log("new Head");
+
+        this.ready = false;
+
+        this.loader = init.loader;
 
         this.headObj = null;
         this.headStep = 0;
@@ -43,6 +47,27 @@ class Head {
         );
         this.spotLightFront.intensity = 1;
 
+        this.addEventListeners();
+    }
+
+    addEventListeners = () => {
+        window.addEventListener("resize", this.resizeEngine);
+    };
+
+    fadeIn = () => {
+        if (this.headObj.material.alpha <= 1) {
+            this.headObj.material.alpha += 0.02;
+        } else {
+            window.setTimeout(() => {
+                this.ready = true;
+            }, 500);
+            this.scene.unregisterBeforeRender(this.fadeIn);
+        }
+    };
+
+    onLoaderReady = () => {
+        const _this = this;
+
         this.assetsManager = new BABYLON.AssetsManager(this.scene);
         this.assetsManager.useDefaultLoadingScreen = false;
 
@@ -53,9 +78,8 @@ class Head {
             "head3dReduced.obj"
         );
 
-        const _this = this;
         meshTask.onSuccess = function(task) {
-            console.log(task);
+            // console.log(task);
             _this.headObj = task.loadedMeshes[0];
             _this.headObj.material.emissiveColor = new BABYLON.Color3(0, 0, 0);
             _this.headObj.material.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -64,6 +88,9 @@ class Head {
             _this.headObj.rotation.y = -1;
             // _this.headObj.position.y = 100;
             _this.scene.registerBeforeRender(_this.rotateHead);
+
+            _this.headObj.material.alpha = 0;
+            _this.scene.registerBeforeRender(_this.fadeIn);
         };
         meshTask.onError = function(task, message, exception) {
             console.log("error");
@@ -75,7 +102,7 @@ class Head {
             totalCount,
             lastFinishedTask
         ) => {
-            console.log(remainingCount, totalCount, lastFinishedTask);
+            // console.log(remainingCount, totalCount);
         };
 
         this.assetsManager.load();
@@ -115,12 +142,6 @@ class Head {
                 this.scene.render();
             });
         };
-
-        this.addEventListeners();
-    }
-
-    addEventListeners = () => {
-        window.addEventListener("resize", this.resizeEngine);
     };
 
     resizeEngine = () => {

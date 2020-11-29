@@ -32,7 +32,8 @@
             transform: translateX(-50%) translateY($BS * -64);
             box-shadow: $GreenDarkest 0 0 $BS*50;
             z-index: 10;
-            &.tour__customThemeImg {
+            &.tour__customThemeImg,
+            &.tour__blenderImg {
                 transform: translate(-50%, 50%);
             }
             &--default {
@@ -78,7 +79,7 @@
         }
         .head {
             position: absolute;
-            mix-blend-mode: normal;
+            // mix-blend-mode: normal;
         }
     }
 }

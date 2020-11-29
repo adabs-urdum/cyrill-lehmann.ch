@@ -1,7 +1,7 @@
 $FontFamilyMain: "Roboto Condensed",
 sans-serif;
 $FontFamilyTitle: "Quantico",
-"sans-serif";
+sans-serif;
 // Font Size set in <html>, font-size used in design
 $BaseRemSize: 22;
 // 16px is the usual 1rem size
@@ -55,9 +55,12 @@ $YellowDarkest: #6E4500;
 $Blue: #0dcdff;
 $BlueDark: #1291b3;
 $BlueDarkest: #00627E;
-$Violet: #aa14cc;
-$VioletDark: #65067a;
-$VioletDarkest: #370342;
+$Violet: #ee5454;
+$VioletDark: #7a0606;
+$VioletDarkest: #420303;
 $Green: #b8e535;
 $GreenDark: #7ea215;
 $GreenDarkest: #2d3a08;
+$Green: $Blue;
+$GreenDark: $BlueDark;
+$GreenDarkest: $BlueDarkest;

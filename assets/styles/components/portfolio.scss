@@ -4,8 +4,147 @@
     // get Basesize in correct relation to design width
     $BS: getBaseSize($type);
     .portfolio {
+        position: absolute;
         color: $VioletDarkest;
-        background-image: radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmax);
+        background-image: radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmin);
+        overflow-y: auto;
+        padding: $BS*64 $BS*64 $BS*600;
+        justify-content: flex-start;
+        &__title {
+            margin-bottom: $BS * 64;
+            p {
+                margin: 0;
+            }
+        }
+        &__projects {
+            display: flex;
+            flex-direction: column;
+        }
+        &__projectDescription {
+            margin: 0 $BS*48;
+            text-align: left;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            font-weight: 700;
+            width: $BS * 600;
+            max-width: 100%;
+            p {
+                margin: 0;
+            }
+        }
+        &__project {
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom: $BS * 32;
+            cursor: pointer;
+            &:after {
+                display: none;
+            }
+            &--work {
+                color: $VioletDarkest;
+                text-align: left;
+                justify-content: flex-start;
+                flex-direction: row-reverse;
+                .portfolio {
+                    &__projectDescription {
+                        text-align: right;
+                    }
+                    &__projectTitle {
+                        transform-origin: center left;
+                    }
+                    &__tags {
+                        flex-direction: row-reverse;
+                    }
+                    &__tag {
+                        margin-left: $BS * 16;
+                        margin-right: 0;
+                        &:last-child {
+                            margin-left: 0;
+                        }
+                    }
+                    &__projectImage {
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+            &--fun {
+                text-align: right;
+            }
+            &--title {
+                display: flex;
+                justify-content: space-between;
+                font-family: $FontFamilyTitle;
+                @include bsFontSize($BS, 62);
+                line-height: 100%;
+                margin-bottom: $BS * 64;
+                color: $VioletDarkest;
+                cursor: default;
+                p {
+                    margin: 0;
+                }
+            }
+            &:hover {
+                .portfolio {
+                    &__projectDescription {
+                        opacity: 1;
+                    }
+                    &__projectImage {
+                        display: block;
+                    }
+                }
+            }
+        }
+        &__projectImage {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 66%;
+            transform: translateY(calc(100% + #{$BS} * 16));
+            pointer-events: none;
+            display: none;
+            opacity: 0;
+            animation: FADEIN 0.3s ease-out forwards;
+            z-index: 99;
+            // mix-blend-mode: luminosity;
+            box-shadow: $VioletDarkest 0 0 $BS*30;
+            @keyframes FADEIN {
+                0% {
+                    display: block;
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                    display: block;
+                }
+            }
+        }
+        &__projectTitle {
+            // @include bsFontSize($BS, 100);
+            line-height: 100%;
+            // transform: perspective($BS * 500) translateZ($BS * -200);
+            transition: transform 0.3s ease-out;
+            margin: 0;
+            transform-origin: center right;
+        }
+        &__tags {
+            display: flex;
+            margin-top: 0;
+            color: $VioletDark;
+        }
+        &__tag {
+            padding: 0;
+            margin-right: $BS * 16;
+            &:last-child {
+                margin-right: 0;
+            }
+            &:before {
+                display: none;
+            }
+        }
     }
 }
 
