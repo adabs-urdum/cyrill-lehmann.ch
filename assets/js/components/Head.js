@@ -32,8 +32,8 @@ class Head {
             new BABYLON.Vector3(0, 200, 0),
             this.scene
         );
-        this.hemisphericLight.groundColor = new BABYLON.Color3(0.4, 0.8, 1);
-        this.hemisphericLight.diffuse = new BABYLON.Color3(0.4, 0.8, 1);
+        this.hemisphericLight.groundColor = new BABYLON.Color3(0.6, 0.8, 1);
+        this.hemisphericLight.diffuse = new BABYLON.Color3(0.6, 0.8, 1);
         // this.hemisphericLight.groundColor = new BABYLON.Color3(1, 1, 1);
         // this.hemisphericLight.diffuse = new BABYLON.Color3(1, 1, 1);
 

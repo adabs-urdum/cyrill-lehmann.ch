@@ -82,29 +82,6 @@ class Portfolio extends Overlay {
           "https://api.adabs.ch/wp-content/uploads/2020/10/circleg-300x169.jpg 300w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-1024x576.jpg 1024w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-768x432.jpg 768w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-1536x864.jpg 1536w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-2048x1152.jpg 2048w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-2000x1125.jpg 2000w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-1450x816.jpg 1450w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-512x288.jpg 512w",
         tags: ["Wordpress", "JavaScript", "SVG Animationen"],
       },
-      {
-        type: "fun",
-        title: "Birdshooter",
-        client: "Mein bis jetzt einziges komplettes Spiel",
-        description: "Open Source Grafiken und Pixi.js",
-        href: "https://birds.adabs.ch/",
-        imageSrc: "https://api.adabs.ch/wp-content/uploads/2020/04/birds.jpg",
-        imageSrcset:
-          "https://api.adabs.ch/wp-content/uploads/2020/04/birds-300x169.jpg 300w, https://api.adabs.ch/wp-content/uploads/2020/04/birds-768x433.jpg 768w, https://api.adabs.ch/wp-content/uploads/2020/04/birds-512x289.jpg 512w, https://api.adabs.ch/wp-content/uploads/2020/04/birds.jpg 900w",
-        tags: ["JavaScript", "Pixi.js", "GameDev"],
-      },
-      {
-        type: "work",
-        title: "projectcircleg.com",
-        client: "Project Circleg",
-        description: "Umsetzung Custom Wordpress Theme anhand Design",
-        href: "https://projectcircleg.com/",
-        imageSrc:
-          "https://api.adabs.ch/wp-content/uploads/2020/10/circleg-scaled.jpg",
-        imageSrcset:
-          "https://api.adabs.ch/wp-content/uploads/2020/10/circleg-300x169.jpg 300w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-1024x576.jpg 1024w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-768x432.jpg 768w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-1536x864.jpg 1536w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-2048x1152.jpg 2048w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-2000x1125.jpg 2000w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-1450x816.jpg 1450w, https://api.adabs.ch/wp-content/uploads/2020/10/circleg-512x288.jpg 512w",
-        tags: ["Wordpress", "JavaScript", "SVG Animationen"],
-      },
     ];
     this.projects.forEach((project) => {
       this.loader.add(project.imageSrc);
@@ -134,7 +111,7 @@ class Portfolio extends Overlay {
           target="_blank"
           rel="noopener"
         >
-          <h1 className="portfolio__projectTitle">{project.title}</h1>
+          <h2 className="portfolio__projectTitle">{project.title}</h2>
           <img
             className="portfolio__projectImage"
             src={project.imageSrc}
@@ -162,15 +139,15 @@ class Portfolio extends Overlay {
           </button>{" "}
         </div>{" "}
         <section className="portfolio overlay__content">
-          <h1 className="portfolio__title">Arbeitsauszüge</h1>
+          <h1 className="portfolio__title">Portfolio</h1>
           <div className="portfolio__wrapper">
             <div className="portfolio__projects">
-              <div className="portfolio__project portfolio__project--title portfolio__project--fun">
+              {/* <div className="portfolio__project portfolio__project--title portfolio__project--fun">
                 <p>Hobby</p>
               </div>
               <div className="portfolio__project portfolio__project--title portfolio__project--work">
                 <p>Arbeit</p>
-              </div>
+              </div> */}
               {projectsJsx}
             </div>
           </div>{" "}

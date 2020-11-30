@@ -8,10 +8,10 @@
         color: $VioletDarkest;
         background-image: radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmin);
         overflow-y: auto;
-        padding: $BS*64 $BS*64 $BS*600;
+        padding: $BS*256 $BS*256 $BS*480;
         justify-content: flex-start;
         &__title {
-            margin-bottom: $BS * 64;
+            margin-bottom: $BS * 128;
             p {
                 margin: 0;
             }
@@ -23,7 +23,7 @@
         &__projectDescription {
             margin: 0 $BS*48;
             text-align: left;
-            opacity: 0;
+            // opacity: 0;
             transition: opacity 0.3s ease-out;
             font-weight: 700;
             width: $BS * 600;
@@ -36,9 +36,9 @@
             position: relative;
             display: flex;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-end;
             flex-direction: row;
-            margin-bottom: $BS * 32;
+            margin-bottom: $BS * 88;
             cursor: pointer;
             &:after {
                 display: none;
@@ -102,7 +102,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 66%;
+            width: 45%;
             transform: translateY(calc(100% + #{$BS} * 16));
             pointer-events: none;
             display: none;
@@ -110,7 +110,7 @@
             animation: FADEIN 0.3s ease-out forwards;
             z-index: 99;
             // mix-blend-mode: luminosity;
-            box-shadow: $VioletDarkest 0 0 $BS*30;
+            box-shadow: $VioletDarkest 0 0 $BS*15;
             @keyframes FADEIN {
                 0% {
                     display: block;
@@ -123,8 +123,8 @@
             }
         }
         &__projectTitle {
-            // @include bsFontSize($BS, 100);
-            line-height: 100%;
+            @include bsFontSize($BS, 44);
+            line-height: 110%;
             // transform: perspective($BS * 500) translateZ($BS * -200);
             transition: transform 0.3s ease-out;
             margin: 0;
