@@ -5,12 +5,13 @@
     $BS: getBaseSize($type);
     .portfolio {
         position: absolute;
-        color: $VioletDarkest;
+        color: $VioletDark;
         background-image: radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmin);
         overflow-y: auto;
-        padding: $BS*256 $BS*256 $BS*480;
+        padding: $BS*170 $BS*256 $BS*384;
         justify-content: flex-start;
         &__title {
+            color: $VioletDarkest;
             margin-bottom: $BS * 128;
             p {
                 margin: 0;
@@ -28,6 +29,7 @@
             font-weight: 700;
             width: $BS * 600;
             max-width: 100%;
+            transition: color 0.3s ease-out;
             p {
                 margin: 0;
             }
@@ -44,7 +46,7 @@
                 display: none;
             }
             &--work {
-                color: $VioletDarkest;
+                // color: $VioletDarkest;
                 text-align: left;
                 justify-content: flex-start;
                 flex-direction: row-reverse;
@@ -65,7 +67,7 @@
                             margin-left: 0;
                         }
                     }
-                    &__projectImage {
+                    &__projectImageWrapper {
                         left: auto;
                         right: 0;
                     }
@@ -88,29 +90,29 @@
                 }
             }
             &:hover {
+                color: $VioletDarkest;
                 .portfolio {
                     &__projectDescription {
                         opacity: 1;
                     }
-                    &__projectImage {
+                    &__projectImageWrapper {
                         display: block;
                     }
                 }
             }
         }
-        &__projectImage {
+        &__projectImageWrapper {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 45%;
-            transform: translateY(calc(100% + #{$BS} * 16));
-            pointer-events: none;
             display: none;
             opacity: 0;
-            animation: FADEIN 0.3s ease-out forwards;
-            z-index: 99;
-            // mix-blend-mode: luminosity;
+            background: $VioletDark;
+            width: 45%;
+            transform: translateY(calc(100% + #{$BS} * 16));
+            z-index: 98;
             box-shadow: $VioletDarkest 0 0 $BS*15;
+            animation: FADEIN 0.3s ease-out forwards;
             @keyframes FADEIN {
                 0% {
                     display: block;
@@ -122,6 +124,12 @@
                 }
             }
         }
+        &__projectImage {
+            width: 100%;
+            pointer-events: none;
+            z-index: 99;
+            mix-blend-mode: luminosity;
+        }
         &__projectTitle {
             @include bsFontSize($BS, 44);
             line-height: 110%;
@@ -129,6 +137,7 @@
             transition: transform 0.3s ease-out;
             margin: 0;
             transform-origin: center right;
+            transition: color 0.3s ease-out;
         }
         &__tags {
             display: flex;
@@ -138,6 +147,7 @@
         &__tag {
             padding: 0;
             margin-right: $BS * 16;
+            white-space: nowrap;
             &:last-child {
                 margin-right: 0;
             }

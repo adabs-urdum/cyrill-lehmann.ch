@@ -68,14 +68,16 @@ class Intro {
         </div>{" "}
         <div className="intro__list">
           <button
-            onClick={(e) => this.controller.setRoute("contact")}
+            onClick={(e) => {
+              this.controller.setRoute("contact");
+            }}
             className="intro__button button"
           >
             Kontakt{" "}
           </button>{" "}
           <button
             onClick={(e) => this.controller.setRoute("tour/1")}
-            className="intro__button button button--secondary"
+            className="intro__button button button--secondary desktop_only"
           >
             Tour{" "}
           </button>{" "}

@@ -19,7 +19,6 @@ class Controller {
 
     onPopState = () => {
         console.log("onPopState");
-        console.log(window.location);
         this.onUrlChange();
     };
 
@@ -36,11 +35,13 @@ class Controller {
 
     onUrlChange = () => {
         console.log("onUrlChange");
-        console.log(window.location.pathname);
         const path = window.location.pathname.split("/");
         switch (path[1]) {
             case "contact":
-                const contact = new Person({ loader: this.loader });
+                const contact = new Person({
+                    loader: this.loader,
+                    head: this.head,
+                });
                 contact.evenBeforeClose = () => {
                     this.setRoute("");
                 };
@@ -60,7 +61,10 @@ class Controller {
                 };
                 break;
             case "portfolio":
-                const portfolio = new Portfolio({ loader: this.loader });
+                const portfolio = new Portfolio({
+                    loader: this.loader,
+                    head: this.head,
+                });
                 portfolio.evenBeforeClose = () => {
                     this.setRoute("");
                 };

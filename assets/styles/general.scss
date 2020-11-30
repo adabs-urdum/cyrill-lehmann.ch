@@ -113,7 +113,8 @@
         padding: $BS * 14 $BS * 16 $BS * 16;
         margin: $BS * 16 0;
     }
-    .button {
+    .button,
+    button {
         box-sizing: border-box;
         position: relative;
         display: inline-block;
@@ -127,6 +128,7 @@
         margin-bottom: $BS * 16;
         background-color: transparent;
         transition: background-color 0.3s ease-out;
+        line-height: 100%;
         cursor: pointer;
         &:hover,
         &:checked {
@@ -166,10 +168,10 @@
         font-family: inherit;
         background: none;
         outline: none;
-        padding: 0;
         margin: 0;
         border: none;
         text-align: inherit;
+        line-height: 100%;
     }
     .tour__stage {
         .button {

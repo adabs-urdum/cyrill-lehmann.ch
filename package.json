@@ -44,6 +44,7 @@
         "babylonjs": "latest",
         "babylonjs-materials": "latest",
         "babylonjs-loaders": "latest",
-        "preloader": "latest"
+        "preloader": "latest",
+        "axios": "latest"
     }
 }

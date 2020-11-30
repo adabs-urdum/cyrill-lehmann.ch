@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import Preloader from "preloader/lib";
+import axios from "axios";
 
 class Loader {
   constructor(init) {
@@ -8,6 +9,8 @@ class Loader {
     this.preloader = new Preloader({
       xhrImages: false,
     });
+
+    this.projects = [];
 
     this.section = document.querySelector("#loader");
 
@@ -18,6 +21,38 @@ class Loader {
   addEventListeners = () => {
     this.preloader.on("complete", this.onLoaderComplete);
     this.preloader.on("progress", this.onLoaderProgress);
+  };
+
+  reset = () => {
+    this.preloader.reset();
+  };
+
+  getProjects = (callback) => {
+    this.projects = [];
+
+    let fetchUrl =
+      window.location.hostname == "localhost"
+        ? "https://api.adabs.ch.test"
+        : "https://api.adabs.ch";
+    fetchUrl = "https://api.adabs.ch";
+
+    axios.get(fetchUrl + "/projekte-2020/").then((response) => {
+      const projectsData = response.data.projects;
+      projectsData.forEach((project) => {
+        this.projects.push({
+          name: project.title,
+          tags: project.tags,
+          client: project.client,
+          type: project.type,
+          description: project.description,
+          link: project.linkout,
+          imageSrc: project.image.url,
+          imageSrcset: project.image.srcset,
+        });
+      });
+
+      callback();
+    });
   };
 
   add = (url) => {
@@ -56,8 +91,10 @@ class Loader {
     const markup = (
       <Fragment>
         <div className="loader__wrapper">
-          <div id="loaderBar" className="loader__bar"></div>
-        </div>
+          <div id="loaderBar" className="loader__bar">
+            {" "}
+          </div>{" "}
+        </div>{" "}
       </Fragment>
     );
 

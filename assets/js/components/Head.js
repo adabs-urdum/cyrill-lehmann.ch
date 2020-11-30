@@ -128,20 +128,28 @@ class Head {
             );
             left.visibility = 0.1;
 
-            this.engine.runRenderLoop(() => {
-                if (this.scene.isActiveMesh(upper)) {
-                    upper.position.y += 5;
-                    this.upperLimit = upper.position.y;
-                }
-
-                if (this.scene.isActiveMesh(left)) {
-                    left.position.x += 5;
-                    this.leftLimit = left.position.x;
-                }
-
-                this.scene.render();
-            });
+            this.startRenderLoop(left, upper);
         };
+    };
+
+    startRenderLoop = (left, upper) => {
+        this.engine.runRenderLoop(() => {
+            if (this.scene.isActiveMesh(upper)) {
+                upper.position.y += 5;
+                this.upperLimit = upper.position.y;
+            }
+
+            if (this.scene.isActiveMesh(left)) {
+                left.position.x += 5;
+                this.leftLimit = left.position.x;
+            }
+
+            this.scene.render();
+        });
+    };
+
+    stopRenderLoop = () => {
+        this.engine.stopRenderLoop();
     };
 
     resizeEngine = () => {

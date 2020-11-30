@@ -34,8 +34,65 @@
                 margin-right: $BS * 12;
             }
         }
-        &__buttonWrapper {
-            margin-top: $BS * 64;
+        &__wrapper {
+            h1 {
+                span {
+                    @include bsFontSize($BS, 60);
+                }
+            }
+            &>h2 {
+                margin-bottom: $BS * 16;
+                &+p {
+                    margin-top: 0;
+                    margin-bottom: $BS * 64;
+                }
+            }
+        }
+        &__helloWrapper {
+            position: relative;
+            display: flex;
+            align-content: center;
+            margin: $BS*32 0 $BS*64;
+            label {
+                position: relative;
+                margin: 0 $BS*16;
+                @include bsFontSize($BS, 8);
+                line-height: 100%;
+                span {
+                    position: absolute;
+                    top: 0;
+                    left: $BS * 16;
+                    transform: translateY(calc(-100% - #{$BS} * 4));
+                }
+            }
+            div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                font-weight: 700;
+            }
+            p {
+                margin: 0;
+            }
+            input {
+                box-sizing: border-box;
+                height: 100%;
+                border: none;
+                padding: $BS*4 $BS*16;
+                appearance: none;
+                outline: solid $BS*4 transparent;
+                transition: outline 0.3s ease-out;
+                &:focus {
+                    border: none;
+                    outline: solid $BS*4 $BlueDark;
+                }
+                &.error {
+                    outline: solid $BS*4 $Violet;
+                }
+            }
+            .button {
+                margin: 0;
+            }
         }
     }
 }

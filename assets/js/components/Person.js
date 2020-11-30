@@ -1,15 +1,58 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import Overlay from "./Overlay";
+import axios from "axios";
 
 class Person extends Overlay {
   constructor(init) {
     super();
     console.log("new Person");
     this.loader = init.loader;
+    this.head = init.head;
+    this.head.stopRenderLoop();
     this.section = document.querySelector(".overlay");
     this.render();
   }
+
+  beforeClose = () => {
+    this.head.startRenderLoop();
+  };
+
+  onSayHello = () => {
+    const name = this.section.querySelector("#yourName");
+    const nameVal = name.value.trim();
+    const mail = this.section.querySelector("#yourEmail");
+    const mailVal = mail.value.trim();
+    let errors = 0;
+
+    if (mailVal.length <= 0) {
+      mail.classList.add("error");
+      errors += 1;
+    } else {
+      mail.classList.remove("error");
+    }
+
+    if (nameVal.length <= 0) {
+      name.classList.add("error");
+      errors += 1;
+    } else {
+      name.classList.remove("error");
+    }
+
+    if (errors === 0) {
+      const fetchUrl = "https://api.adabs.ch";
+
+      axios
+        .get(`${fetchUrl}/sendhello/?username=${nameVal}&mail=${mailVal}`)
+        .then((response) => {
+          if (response.data.mailSuccess) {
+            this.helloWrapper.innerHTML = `<h4>Hallo ${nameVal}! Ich antworte dir bestimmt noch per E-Mail.</h4>`;
+          } else {
+            this.helloWrapper.innerHTML = `<h4>Hallo ${nameVal}! Leider hat der Versand technisch nicht funktioniert.</h4>`;
+          }
+        });
+    }
+  };
 
   render = () => {
     const markup = (
@@ -27,9 +70,7 @@ class Person extends Overlay {
         <section className="person overlay__content">
           <div className="person__wrapper">
             <h1>
-              Falls du ein cooles Projekt hast
-              <br />
-              <span>oder einfach «Hallo» sagen willst</span>
+              Du hast ein Projekt <span>oder willst «hallo» sagen?</span>
             </h1>
             <h2>
               Cyrill Lehmann
@@ -44,13 +85,34 @@ class Person extends Overlay {
               <br />
               <span>Freizeit</span>Code, Ski, Pilze
               <br />
-              <span>Stärke</span>Eigenwillig, direkt, ehrlich
-              <br />
-              <span>Schwäche</span>Eigenwillig, direkt, ehrlich
-              <br />
               <span>Arbeit</span>JavaScript, SCSS, HTML, PHP, Wordpress, React
               <br />
             </p>
+            <h2>Unkomplizierte Kontaktaufnahme</h2>
+            <div className="person__helloWrapper">
+              <div>
+                <p>Grüsse von</p>
+              </div>
+              <label htmlFor="yourName">
+                <span>dein Name</span>
+                <input id="yourName" type="text" placeholder="" />
+              </label>
+              <div>
+                <p>@</p>
+              </div>
+              <label htmlFor="yourEmail">
+                <span>deine E-Mail Adresse</span>
+                <input id="yourEmail" type="email" placeholder="" />
+              </label>
+              <button
+                className="button button--secondary button--hello"
+                onClick={this.onSayHello}
+              >
+                Hallo sagen
+              </button>
+              <div className="person__message"></div>
+            </div>
+            <h2>E-Mail und unkompliziertes Stalking</h2>
             <div className="person__buttonWrapper">
               <a
                 className="button button--secondary"
@@ -106,6 +168,7 @@ class Person extends Overlay {
     ReactDOM.render(markup, this.section, () => {
       this.section.style.display = "flex";
       this.section.classList.add("open");
+      this.helloWrapper = this.section.querySelector(".person__helloWrapper");
     });
   };
 }
