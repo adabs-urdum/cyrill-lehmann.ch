@@ -151,11 +151,24 @@
             pointer-events: none;
             z-index: -1;
         }
+        &:last-child {
+            margin-right: 0;
+        }
         &--secondary {
             color: $Blue;
             background-color: $BlueDarkest;
             &:after {
                 border-color: $BlueDarkest;
+            }
+            &:hover {
+                background-color: transparent;
+            }
+        }
+        &--third {
+            background-color: $Blue;
+            color: $BlueDarkest;
+            &:after {
+                border-color: $Blue;
             }
             &:hover {
                 background-color: transparent;
@@ -219,6 +232,21 @@
                 }
                 &:hover {
                     background-color: transparent;
+                }
+            }
+            &--third {
+                background-color: $Yellow;
+                color: $YellowDarkest;
+                margin-left: $BS * 16;
+                &:after {
+                    border-color: $Yellow;
+                }
+                &:hover {
+                    background-color: transparent;
+                    color: $Yellow;
+                    &:after {
+                        border-color: $Yellow;
+                    }
                 }
             }
         }

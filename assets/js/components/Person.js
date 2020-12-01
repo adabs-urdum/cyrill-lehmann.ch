@@ -70,8 +70,35 @@ class Person extends Overlay {
         <section className="person overlay__content">
           <div className="person__wrapper">
             <h1>
-              Du hast ein Projekt <span>oder willst «hallo» sagen?</span>
+              Du hast ein Projekt <span>oder willst «Hallo» sagen?</span>
             </h1>
+            <div className="person__helloWrapper">
+              <h2>
+                Kontakt<span>einfach nur «Hallo»</span>
+              </h2>
+              <div className="person__helloContainer">
+                <div>
+                  <p>Grüsse von</p>
+                </div>
+                <label htmlFor="yourName">
+                  <span>dein Name</span>
+                  <input id="yourName" type="text" placeholder="" />
+                </label>
+                <div>
+                  <p>@</p>
+                </div>
+                <label htmlFor="yourEmail">
+                  <span>deine E-Mail Adresse</span>
+                  <input id="yourEmail" type="email" placeholder="" />
+                </label>
+                <button
+                  className="button button--third button--hello"
+                  onClick={this.onSayHello}
+                >
+                  Hallo sagen
+                </button>
+              </div>
+            </div>
             <h2>
               Cyrill Lehmann
               <span>Web Entwickler</span>
@@ -88,31 +115,6 @@ class Person extends Overlay {
               <span>Arbeit</span>JavaScript, SCSS, HTML, PHP, Wordpress, React
               <br />
             </p>
-            <h2>Unkomplizierte Kontaktaufnahme</h2>
-            <div className="person__helloWrapper">
-              <div>
-                <p>Grüsse von</p>
-              </div>
-              <label htmlFor="yourName">
-                <span>dein Name</span>
-                <input id="yourName" type="text" placeholder="" />
-              </label>
-              <div>
-                <p>@</p>
-              </div>
-              <label htmlFor="yourEmail">
-                <span>deine E-Mail Adresse</span>
-                <input id="yourEmail" type="email" placeholder="" />
-              </label>
-              <button
-                className="button button--secondary button--hello"
-                onClick={this.onSayHello}
-              >
-                Hallo sagen
-              </button>
-              <div className="person__message"></div>
-            </div>
-            <h2>E-Mail und unkompliziertes Stalking</h2>
             <div className="person__buttonWrapper">
               <a
                 className="button button--secondary"

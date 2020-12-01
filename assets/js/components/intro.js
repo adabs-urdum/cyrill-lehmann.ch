@@ -25,6 +25,11 @@ class Intro {
 
   addEventListeners = () => {
     this.section.addEventListener("mousemove", this.onMouseMove);
+    this.section.addEventListener("touchmove", (e) => {
+      e.clientX = e.touches[0].clientX;
+      e.clientY = e.touches[0].clientY;
+      this.onMouseMove(e);
+    });
   };
 
   onMouseMove = (e) => {

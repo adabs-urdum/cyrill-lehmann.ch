@@ -159,10 +159,6 @@ class Tour extends Overlay {
                 Mein SCSS Setup
               </a>
             </div>
-            <p className="trivia">
-              Trivia: Internet Explorer sollte wie Pluto aus dem Kreise der
-              Grossen ausgeschlossen werden.{" "}
-            </p>{" "}
             <div className="tour__stageDivider tour__stageDivider--default">
               {" "}
             </div>{" "}
@@ -175,9 +171,14 @@ class Tour extends Overlay {
               JavaScript, CSS und HTML realisieren.{" "}
             </p>{" "}
             <div className="tour__buttonWrapper">
-              <button className="button button--secondary">
-                Finde den Unterschied
-              </button>
+              <a
+                href="https://spotthedifference.adabs.ch/"
+                target="_blank"
+                rel="noopener"
+                className="button button--secondary"
+              >
+                Finde die Unterschied
+              </a>
               <a
                 href="https://memory.adabs.ch/"
                 target="_blank"

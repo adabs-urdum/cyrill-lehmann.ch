@@ -54,7 +54,7 @@ class Portfolio extends Overlay {
               className="portfolio__projectImage"
               src={project.imageSrc}
               srcSet={project.imageSrcset}
-              sizes="(max-width: 500px) 80vw, 70vw"
+              sizes="(max-width: 500px) 80vw, 30vw"
             />
           </div>{" "}
           <div className="portfolio__projectDescription">

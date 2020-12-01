@@ -40,20 +40,21 @@
                     @include bsFontSize($BS, 60);
                 }
             }
-            &>h2 {
-                margin-bottom: $BS * 16;
+            h2 {
+                line-height: 100%;
+                margin-bottom: $BS * 20;
                 &+p {
                     margin-top: 0;
                     margin-bottom: $BS * 64;
                 }
             }
         }
-        &__helloWrapper {
-            position: relative;
+        &__helloContainer {
+            margin-top: $BS *32;
             display: flex;
             align-content: center;
-            margin: $BS*32 0 $BS*64;
             label {
+                flex: 1;
                 position: relative;
                 margin: 0 $BS*16;
                 @include bsFontSize($BS, 8);
@@ -69,7 +70,6 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                font-weight: 700;
             }
             p {
                 margin: 0;
@@ -77,11 +77,14 @@
             input {
                 box-sizing: border-box;
                 height: 100%;
+                width: 100%;
+                min-width: $BS * 256;
                 border: none;
                 padding: $BS*4 $BS*16;
                 appearance: none;
                 outline: solid $BS*4 transparent;
                 transition: outline 0.3s ease-out;
+                background-color: $White;
                 &:focus {
                     border: none;
                     outline: solid $BS*4 $BlueDark;
@@ -91,8 +94,20 @@
                 }
             }
             .button {
-                margin: 0;
+                margin-bottom: 0;
+                border: solid $BS*3 $Yellow;
             }
+        }
+        &__helloWrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            margin: $BS*32 0 $BS*64;
+            padding: $BS*32 $BS*32 $BS*32;
+            background-color: $YellowDarkest;
+            color: $Yellow;
         }
     }
 }
