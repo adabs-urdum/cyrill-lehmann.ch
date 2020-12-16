@@ -42,8 +42,10 @@ class Intro {
   onFullscreenClick = (e) => {
     if (this.isFullscreen) {
       document.exitFullscreen();
+      this.fullscreenTrigger.classList.remove("active");
     } else {
       document.documentElement.requestFullscreen();
+      this.fullscreenTrigger.classList.add("active");
     }
     this.isFullscreen = !this.isFullscreen;
   };

@@ -19,7 +19,6 @@ class Person extends Overlay {
   };
 
   onSayHello = (e) => {
-    e.currentTarget.disabled = true;
     const name = this.section.querySelector("#yourName");
     const nameVal = name.value.trim();
     const mail = this.section.querySelector("#yourEmail");
@@ -42,6 +41,8 @@ class Person extends Overlay {
 
     if (errors === 0) {
       const fetchUrl = "https://api.adabs.ch";
+
+      e.currentTarget.disabled = true;
 
       axios
         .get(`${fetchUrl}/sendhello/?username=${nameVal}&mail=${mailVal}`)
@@ -106,14 +107,14 @@ class Person extends Overlay {
                 <div className="person__helloContainer">
                   <label htmlFor="yourName">
                     <span>dein Name</span>
-                    <input id="yourName" type="text" placeholder="" />
+                    <input id="yourName" type="text" autoComplete="name" />
                   </label>
                   <div>
                     <p>@</p>
                   </div>
                   <label htmlFor="yourEmail">
                     <span>deine E-Mail Adresse</span>
-                    <input id="yourEmail" type="email" placeholder="" />
+                    <input id="yourEmail" type="email" autoComplete="email" />
                   </label>
                   <button
                     className="button button--third button--hello"

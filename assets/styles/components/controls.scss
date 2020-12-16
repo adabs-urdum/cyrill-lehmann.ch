@@ -107,8 +107,9 @@
         height: calc(30% - #{$BS} * 6);
         border-right: solid $Blue $BS * 3;
         border-top: solid $Blue $BS * 3;
-        background-image: linear-gradient();
         pointer-events: none;
+        transition: transform 0.25s ease-out;
+        transition-delay: 0.75s;
       }
 
       &:after {
@@ -126,6 +127,15 @@
         &:before,
         &:after {
           border-color: $BlueDarkest;
+        }
+      }
+
+      &.active {
+        &:after {
+          transform: rotate(180deg) translate(35%, -35%);
+        }
+        &:before {
+          transform: rotate(180deg) translate(-35%, 35%);
         }
       }
     }
