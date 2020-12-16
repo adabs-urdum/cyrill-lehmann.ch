@@ -3203,8 +3203,8 @@ canvas {
 }
 
 .intro .button:hover:after {
-  width: 120vmax;
-  height: 120vmax;
+  width: 122vmax;
+  height: 122vmax;
   border-radius: 50%;
   z-index: -1;
   box-shadow: #004357 0 0 1.51515vw;
@@ -3373,8 +3373,8 @@ canvas {
     pointer-events: none;
   }
   .intro .button:hover:after {
-    width: 120vmax;
-    height: 120vmax;
+    width: 122vmax;
+    height: 122vmax;
     border-radius: 50%;
     z-index: -1;
     box-shadow: #004357 0 0 30px;
@@ -3542,8 +3542,8 @@ canvas {
     pointer-events: none;
   }
   .intro .button:hover:after {
-    width: 120vmax;
-    height: 120vmax;
+    width: 122vmax;
+    height: 122vmax;
     border-radius: 50%;
     z-index: -1;
     box-shadow: #004357 0 0 2.08333vw;
@@ -3711,8 +3711,8 @@ canvas {
     pointer-events: none;
   }
   .intro .button:hover:after {
-    width: 120vmax;
-    height: 120vmax;
+    width: 122vmax;
+    height: 122vmax;
     border-radius: 50%;
     z-index: -1;
     box-shadow: #004357 0 0 2.92969vw;
@@ -3880,8 +3880,8 @@ canvas {
     pointer-events: none;
   }
   .intro .button:hover:after {
-    width: 120vmax;
-    height: 120vmax;
+    width: 122vmax;
+    height: 122vmax;
     border-radius: 50%;
     z-index: -1;
     box-shadow: #004357 0 0 3.90625vw;
@@ -4049,8 +4049,8 @@ canvas {
     pointer-events: none;
   }
   .intro .button:hover:after {
-    width: 120vmax;
-    height: 120vmax;
+    width: 122vmax;
+    height: 122vmax;
     border-radius: 50%;
     z-index: -1;
     box-shadow: #004357 0 0 8vw;
