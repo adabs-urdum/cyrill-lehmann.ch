@@ -1,168 +1,215 @@
 // Styles
 // name mixin after scss portfolio
 @mixin portfolio($type: "") {
-    // get Basesize in correct relation to design width
-    $BS: getBaseSize($type);
-    .portfolio {
-        position: absolute;
-        color: $VioletDark;
-        background-image: radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmin);
-        overflow-y: auto;
-        padding: $BS*170 $BS*256 $BS*384;
-        justify-content: flex-start;
-        &__title {
-            color: $VioletDarkest;
-            margin-bottom: $BS * 128;
-            p {
-                margin: 0;
-            }
-        }
-        &__projects {
-            display: flex;
-            flex-direction: column;
-        }
-        &__projectDescription {
-            margin: 0 $BS*48;
-            text-align: left;
-            // opacity: 0;
-            transition: opacity 0.3s ease-out;
-            font-weight: 700;
-            width: $BS * 600;
-            max-width: 100%;
-            transition: color 0.3s ease-out;
-            p {
-                margin: 0;
-            }
-        }
-        &__project {
-            position: relative;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-end;
-            flex-direction: row;
-            margin-bottom: $BS * 88;
-            cursor: pointer;
-            &:after {
-                display: none;
-            }
-            &--work {
-                // color: $VioletDarkest;
-                text-align: left;
-                justify-content: flex-start;
-                flex-direction: row-reverse;
-                .portfolio {
-                    &__projectDescription {
-                        text-align: right;
-                    }
-                    &__projectTitle {
-                        transform-origin: center left;
-                    }
-                    &__tags {
-                        flex-direction: row-reverse;
-                    }
-                    &__tag {
-                        margin-left: $BS * 16;
-                        margin-right: 0;
-                        &:last-child {
-                            margin-left: 0;
-                        }
-                    }
-                    &__projectImageWrapper {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
-            &--fun {
-                text-align: right;
-            }
-            &--title {
-                display: flex;
-                justify-content: space-between;
-                font-family: $FontFamilyTitle;
-                @include bsFontSize($BS, 62);
-                line-height: 100%;
-                margin-bottom: $BS * 64;
-                color: $VioletDarkest;
-                cursor: default;
-                p {
-                    margin: 0;
-                }
-            }
-            &:hover {
-                color: $VioletDarkest;
-                .portfolio {
-                    &__projectDescription {
-                        opacity: 1;
-                    }
-                    &__projectImageWrapper {
-                        display: block;
-                    }
-                }
-            }
-        }
-        &__projectImageWrapper {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            display: none;
-            opacity: 0;
-            background: $VioletDark;
-            width: 45%;
-            transform: translateY(calc(100% + #{$BS} * 16));
-            z-index: 98;
-            box-shadow: $VioletDarkest 0 0 $BS*15;
-            animation: FADEIN 0.3s ease-out forwards;
-            @keyframes FADEIN {
-                0% {
-                    display: block;
-                    opacity: 0;
-                }
-                100% {
-                    opacity: 1;
-                    display: block;
-                }
-            }
-        }
-        &__projectImage {
-            width: 100%;
-            pointer-events: none;
-            z-index: 99;
-            mix-blend-mode: luminosity;
-        }
-        &__projectTitle {
-            @include bsFontSize($BS, 44);
-            line-height: 110%;
-            // transform: perspective($BS * 500) translateZ($BS * -200);
-            transition: transform 0.3s ease-out;
-            margin: 0;
-            transform-origin: center right;
-            transition: color 0.3s ease-out;
-        }
-        &__tags {
-            display: flex;
-            margin-top: 0;
-            color: $VioletDark;
-        }
-        &__tag {
-            padding: 0;
-            margin-right: $BS * 16;
-            white-space: nowrap;
-            &:last-child {
-                margin-right: 0;
-            }
-            &:before {
-                display: none;
-            }
-        }
+  // get Basesize in correct relation to design width
+  $BS: getBaseSize($type);
+  .portfolio {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: $Blue;
+    background-image: linear-gradient(
+        90deg,
+        $BlueDarkest,
+        transparent,
+        $BlueDarkest
+      ),
+      radial-gradient(
+        circle at center,
+        transparentize($Blue, 0.2) 0,
+        $BlueDarkest 100vmax
+      );
+    overflow-x: auto;
+
+    &__title {
+      text-align: center;
+      color: $BlueDarkest;
+      text-shadow: $Blue 0 0 $BS * 4;
+      margin-bottom: $BS * 128;
+      p {
+        margin: 0;
+      }
     }
+    &__projects {
+      position: relative;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      perspective: 100vw;
+      transform-style: preserve-3d;
+    }
+    &__project {
+      position: relative;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin: $BS * 16 auto;
+      max-width: $BS * 768;
+      box-shadow: $Blue 0 0 $BS * 16;
+      padding: $BS * 32;
+      border: solid $Blue $BS * 3;
+      transform-origin: center center 0;
+      transition: transform 0.15s ease-out, background-color 0.15s ease-out,
+        box-shadow 0.15s ease-out;
+
+      // &:nth-child(even) {
+      //   transform: translateX($BS * -128) rotate(9deg);
+      //   &:hover {
+      //     transform: translateX($BS * -128) scale(1.2);
+      //   }
+      // }
+      // &:nth-child(odd) {
+      //   transform: translateX($BS * 128) rotate(-9deg);
+      //   &:hover {
+      //     transform: translateX($BS * 128) scale(1.2);
+      //   }
+      // }
+
+      &:after {
+        content: none;
+      }
+
+      &:hover {
+        z-index: 100;
+        box-shadow: $BlueDarkest 0 0 $BS * 16;
+      }
+
+      &:last-child {
+        margin-bottom: $BS * 128;
+      }
+
+      &--work {
+        transform: translateX($BS * -128) rotate(9deg);
+        &:hover {
+          transform: translateX($BS * -128) scale(1.1);
+          background-color: transparentize($VioletDarkest, 0.5);
+        }
+      }
+
+      &--fun {
+        // border: solid $Yellow $BS * 3;
+        transform: translateX($BS * 128) rotate(-9deg);
+        &:hover {
+          transform: translateX($BS * 128) scale(1.1);
+          background-color: transparentize($BlueDarkest, 0.5);
+        }
+      }
+    }
+    &__projectDescription {
+      margin: 0;
+      text-align: left;
+      // opacity: 0;
+      transition: opacity 0.3s ease-out;
+      font-weight: 700;
+      width: 100%;
+      max-width: 100%;
+      transition: color 0.3s ease-out;
+
+      @include bsFontSize($BS, 24);
+      p {
+        margin: 0;
+      }
+    }
+
+    &__contentWrapper {
+      box-sizing: border-box;
+      position: relative;
+      width: 100%;
+      overflow: auto;
+      padding: $BS * 64 $BS * 384;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__projectImage {
+      width: 100%;
+      pointer-events: none;
+      z-index: 99;
+    }
+    &__projectTitle {
+      @include bsFontSize($BS, 44);
+      line-height: 110%;
+      // transform: perspective($BS * 500) translateZ($BS * -200);
+      margin: 0 0 $BS * 16;
+      transform-origin: center right;
+      transition: color 0.3s ease-out;
+      text-transform: uppercase;
+    }
+    &__tags {
+      display: flex;
+      margin-top: $BS * 16;
+      color: $Blue;
+      @include bsFontSize($BS, 16);
+      line-height: 100%;
+    }
+    &__tag {
+      padding: 0;
+      margin-right: $BS * 16;
+      white-space: nowrap;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:before {
+        display: none;
+      }
+    }
+    &__wrapper {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0;
+    }
+    &__projectImageWrapper {
+      margin-bottom: $BS * 16;
+    }
+  }
 }
 
 // Add portfolio
 @include portfolio();
 // Add basic portfolio with breakpoints
 @each $Breakpoint in $Breakpoints {
-    @include breakpoint(#{$Breakpoint}) {
-        @include portfolio(#{$Breakpoint});
+  @include breakpoint(#{$Breakpoint}) {
+    @include portfolio(#{$Breakpoint});
+  }
+}
+
+@include breakPointM() {
+  $BS: getBaseSize("M");
+  .portfolio {
+    &__contentWrapper {
+      padding: $BS * 64 $BS * 200;
     }
+  }
+}
+
+@include breakPointS() {
+  $BS: getBaseSize("S");
+  .portfolio {
+    &__contentWrapper {
+      padding: $BS * 64;
+    }
+
+    &__project {
+      // width: 100%;
+      transform: none;
+
+      &--work {
+        background-color: transparentize($VioletDarkest, 0.5);
+      }
+
+      &--fun {
+        background-color: transparentize($YellowDarkest, 0.5);
+      }
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
 }

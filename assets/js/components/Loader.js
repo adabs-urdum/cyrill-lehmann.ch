@@ -28,31 +28,35 @@ class Loader {
   };
 
   getProjects = (callback) => {
-    this.projects = [];
+    if (!this.projects.length) {
+      this.showLoadingScreen("portfolioLoader");
+      this.projects = [];
 
-    let fetchUrl =
-      window.location.hostname == "localhost"
-        ? "https://api.adabs.ch.test"
-        : "https://api.adabs.ch";
-    fetchUrl = "https://api.adabs.ch";
+      let fetchUrl =
+        window.location.hostname == "localhost"
+          ? "https://api.adabs.ch.test"
+          : "https://api.adabs.ch";
+      fetchUrl = "https://api.adabs.ch";
 
-    axios.get(fetchUrl + "/projekte-2020/").then((response) => {
-      const projectsData = response.data.projects;
-      projectsData.forEach((project) => {
-        this.projects.push({
-          name: project.title,
-          tags: project.tags,
-          client: project.client,
-          type: project.type,
-          description: project.description,
-          link: project.linkout,
-          imageSrc: project.image.url,
-          imageSrcset: project.image.srcset,
+      axios.get(fetchUrl + "/projekte-2020/").then((response) => {
+        const projectsData = response.data.projects;
+        projectsData.forEach((project) => {
+          this.projects.push({
+            name: project.title,
+            tags: project.tags,
+            client: project.client,
+            type: project.type,
+            description: project.description,
+            link: project.linkout,
+            imageSrc: project.image.url,
+            imageSrcset: project.image.srcset,
+          });
         });
-      });
 
-      callback();
-    });
+        this.hideLoadingScreen("portfolioLoader");
+        callback();
+      });
+    }
   };
 
   add = (url) => {
@@ -72,12 +76,25 @@ class Loader {
       this.loaderBar.style.width = `100%`;
     }
 
+    this.hideLoadingScreen();
+  };
+
+  hideLoadingScreen = (className) => {
     window.setTimeout(() => {
-      this.section.classList.add("hidden");
+      this.section.classList.add("hiding");
     }, 200);
     window.setTimeout(() => {
-      this.section.remove();
+      this.section.classList.remove(className);
+      this.section.classList.add("hidden");
     }, 400);
+  };
+
+  showLoadingScreen = (className) => {
+    this.section.classList.add(className);
+    this.section.classList.remove("hidden");
+    window.setTimeout(() => {
+      this.section.classList.remove("hiding");
+    }, 200);
   };
 
   onLoaderProgress = (data) => {

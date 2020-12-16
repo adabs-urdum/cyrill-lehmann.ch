@@ -1,32 +1,94 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Vanilla Setup 3.0.2</title>
-</head>
-<link rel="stylesheet" href="./dist/css/styles.min.css?v=3" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/dist/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/dist/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/dist/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/dist/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#1291b3" />
+    <meta name="theme-color" content="#1291b3" />
+    <title>Cyrill Lehmann – WebDev</title>
 
-<body>
+    <meta
+      name="description"
+      content="Cyrill Lehmann – Freelance Web Entwickler – Custom Wordpress Themes – HTML5 Minigames – Frontend Fancyness"
+    />
+    <meta
+      name="keywords"
+      content="Webentwickler, WebDev, Wordpress, Wordpress Custom Theme, Chur"
+    />
+    <meta property="og:title" content="Cyrill Lehmann – Freelance WebDev" />
+    <meta property="og:url" content="https://www.cyrill-lehmann.ch" />
+    <meta property="og:type" content="”website”" />
+    <meta property="og:image" content="./dist/img/portfolio.jpg" />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-143821656-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-143821656-1", { anonymize_ip: true });
+    </script>
+
+    <link rel="stylesheet" href="./dist/css/styles.min.css?v=3" />
+  </head>
+
+  <body>
     <section id="loader" class="loader"></section>
 
     <section id="intro" class="intro panel"></section>
     <section class="overlay panel"></section>
 
-    <canvas class="head" width="800" height="800" data-background-blend-mode="lighten"></canvas>
+    <canvas
+      class="head"
+      width="800"
+      height="800"
+      data-background-blend-mode="lighten"
+    ></canvas>
 
     <div class="controls__shittyBrowser desktop_only">
-        <input class="controls__shittyBrowserCheckbox" type="checkbox" id="showShittyBrowserInfo" />
-        <label for="showShittyBrowserInfo" class="controls__icon controls__icon--shittyBrowser button">!</label
+      <input
+        class="controls__shittyBrowserCheckbox"
+        type="checkbox"
+        id="showShittyBrowserInfo"
+      />
+      <label
+        for="showShittyBrowserInfo"
+        class="controls__icon controls__icon--shittyBrowser button"
+        >!</label
       >
       <span class="controls__shittyBrowserText"
         >CSS mix-blend-mode wird nicht von allen Browsern gleich unterstützt.
-        Ich empfehle Firefox, Chrome, Chromium.</span
+        Ich empfehle Chrome oder Firefox.</span
       >
     </div>
   </body>
 
-  <script src="./dist/js/functions.min.js?v=1"></script>
+  <script src="./dist/js/main.js?v=1"></script>
 </html>

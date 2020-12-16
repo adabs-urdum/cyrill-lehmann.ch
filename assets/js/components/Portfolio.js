@@ -6,6 +6,7 @@ class Portfolio extends Overlay {
   constructor(init) {
     super();
 
+    this.controller = init.controller;
     this.loader = init.loader;
     this.head = init.head;
     this.head.stopRenderLoop();
@@ -19,9 +20,9 @@ class Portfolio extends Overlay {
 
     this.section = document.querySelector(".overlay");
     this.content = document.querySelector(".overlay__content");
-    if (this.content) {
-      this.content.scrollTop = 0;
-    }
+    // if (this.content) {
+    //   this.content.scrollTop = 0;
+    // }
     this.render();
   }
 
@@ -30,7 +31,6 @@ class Portfolio extends Overlay {
   };
 
   render = () => {
-    console.log(this.projects);
     const projectsJsx = this.projects.map((project, projectKey) => {
       const tags = project.tags.map((tag, key) => {
         return (
@@ -40,6 +40,7 @@ class Portfolio extends Overlay {
           </li>
         );
       });
+
       return (
         <a
           key={projectKey}
@@ -77,21 +78,24 @@ class Portfolio extends Overlay {
           </button>{" "}
         </div>{" "}
         <section className="portfolio overlay__content">
-          <h1 className="portfolio__title">
-            Private Projekte und Auftragsarbeiten{" "}
-          </h1>{" "}
-          <div className="portfolio__wrapper">
-            <div className="portfolio__projects">
-              {" "}
-              {/* <div className="portfolio__project portfolio__project--title portfolio__project--fun">
-                                                                                <p>Hobby</p>
-                                                                              </div>
-                                                                              <div className="portfolio__project portfolio__project--title portfolio__project--work">
-                                                                                <p>Arbeit</p>
-                                                                              </div> */}{" "}
-              {projectsJsx}{" "}
+          <div className="portfolio__contentWrapper">
+            <h1 className="portfolio__title">
+              {this.loader.projects.length ? "Arbeiten und Basteleien" : null}{" "}
+            </h1>{" "}
+            <div className="portfolio__wrapper">
+              <div className="portfolio__projects">{projectsJsx}</div>{" "}
             </div>{" "}
-          </div>{" "}
+            {this.loader.projects.length ? (
+              <button
+                className="button button--third"
+                onClick={(e) => {
+                  this.controller.setRoute("contact");
+                }}
+              >
+                Kontakt
+              </button>
+            ) : null}
+          </div>
         </section>{" "}
       </Fragment>
     );

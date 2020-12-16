@@ -19,7 +19,6 @@ class Tour extends Overlay {
   }
 
   addEventListeners = () => {
-    console.log("addEventListeners");
     this.tour.addEventListener("scroll", this.onWindowScroll);
     window.addEventListener("resize", this.onWindowResize);
   };
@@ -111,11 +110,15 @@ class Tour extends Overlay {
               WordPress Themes mit variablen Inhaltsblöcken um. Nach Bedarf auch
               mit Shop, Formularen, Custom Post Types oder auch headless. Dabei
               versuche ich möglichst auf Plugins zu verzichten, um die volle
-              Kontrolle und Freiheit zu haben.{" "}
+              Kontrolle und Freiheit zu haben.
+              <br />
+              <strong>
+                Ich arbeite grundsätzlich nicht mit fertigen Themes.
+              </strong>{" "}
             </p>{" "}
             <p className="trivia">
-              Trivia: Mit selbstentwickelten Themes wird Wordpress ein Tool auch
-              für Entwickler, die etwas von sich halten.{" "}
+              Trivia: Mit selbstentwickelten Themes wird Wordpress ein Werkzeug
+              auch für Entwickler, die etwas von sich halten.{" "}
             </p>{" "}
             <img
               className="tour__customThemeImg tour__stageDivider"
@@ -126,10 +129,11 @@ class Tour extends Overlay {
           <div className="tour__stage tour__stage--4">
             <h1>Nicht ausschliesslich Wordpress</h1>{" "}
             <p>
-              Ich entwickle auch Seiten mit dem CMS ProcessWire und habe
-              Arbeitserfahrung mit Django, Laravel und CodeIgniter. Ich bastle
-              allgemein mit allem, was die Webtechnologie so hergibt und
-              beschäftige mich ab und an auch mit RaspberryPi und Game Engines.{" "}
+              Ich entwickle auch Seiten mit dem CMS ProcessWire, habe
+              Arbeitserfahrung mit Django, Laravel, CodeIgniter und bin immer
+              offen für Neues. Ich bastle allgemein mit allem, was die
+              Webtechnologie so hergibt und beschäftige mich ab und an auch mit
+              RaspberryPi und Game Engines.{" "}
             </p>{" "}
             <p className="trivia">
               Trivia: Ich habe einen RaspberryPi, der als Lichtcomputer für
@@ -164,7 +168,7 @@ class Tour extends Overlay {
             </div>{" "}
           </div>{" "}
           <div className="tour__stage">
-            <h1>SCSS und Vanilla JavaScript</h1>{" "}
+            <h1>Grafisch einfache Module</h1>{" "}
             <p>
               Im Grafik-, Animations- und Funktionsumfang einfach gehaltene
               Module oder Minigames lassen sich relativ problemlos mit
@@ -177,7 +181,7 @@ class Tour extends Overlay {
                 rel="noopener"
                 className="button button--secondary"
               >
-                Finde die Unterschied
+                Finde die Unterschiede
               </a>
               <a
                 href="https://memory.adabs.ch/"
@@ -201,8 +205,9 @@ class Tour extends Overlay {
             <h1>Grafisch komplexe Module</h1>{" "}
             <p>
               Grafisch aufwändigerere Module und Minigames baue ich mit Hilfe
-              von Bibliotheken wie Pixi.js. Technisch gesehen, erzeugen diese
-              jede Sekunde zig Bilder und stellen diese in einer Canvas dar.
+              von Bibliotheken wie Pixi.js. Diese stellen nicht einzelne
+              Elemente dar, sondern wandeln sie in ein Bild um, das mit WebGL in
+              einer Canvas dargestellt wird.
             </p>{" "}
             <div className="tour__buttonWrapper">
               <a
@@ -222,9 +227,9 @@ class Tour extends Overlay {
                 Fischteich
               </a>
             </div>
-            <p className="trivia">
+            {/* <p className="trivia">
               Trivia: Namensgebung ist nicht meine Stärke.{" "}
-            </p>{" "}
+            </p>{" "} */}
             <img
               className="tour__blenderImg tour__stageDivider"
               src="./dist/img/blender.jpg"
@@ -232,7 +237,7 @@ class Tour extends Overlay {
             />
           </div>{" "}
           <div className="tour__stage tour__stage--6">
-            <h1>3D-Modelle</h1>{" "}
+            <h1>3D-Modelle und Szenen</h1>{" "}
             <p>
               Mit Hilfe von JavaScript Bibliotheken wie Babylon.js ist es
               möglich, 3D-Objekte im Web darzustellen. Wie auch zum Beispiel
@@ -342,12 +347,12 @@ class Tour extends Overlay {
 
     if (
       Math.abs(this.head.headObj.position.y) -
-        Math.abs(this.head.upperLimit / 2 - 100) >
+        Math.abs(this.head.upperLimit / 2 - 130) >
       2
     ) {
       this.head.headObj.position.y -= this.head.upperLimit / 90;
     } else {
-      this.head.headObj.position.y = this.head.upperLimit / 2 - 100;
+      this.head.headObj.position.y = this.head.upperLimit / 2 - 130;
 
       readyPosY = true;
     }

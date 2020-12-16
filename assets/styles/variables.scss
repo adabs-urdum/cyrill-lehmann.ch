@@ -1,7 +1,5 @@
-$FontFamilyMain: "Roboto Condensed",
-sans-serif;
-$FontFamilyTitle: "Quantico",
-sans-serif;
+$FontFamilyMain: "Roboto Condensed", sans-serif;
+$FontFamilyTitle: "Quantico", sans-serif;
 // Font Size set in <html>, font-size used in design
 $BaseRemSize: 22;
 // 16px is the usual 1rem size
@@ -28,39 +26,65 @@ $MBS: $BS * $BreakpointMRelation;
 $SBS: $BS * $BreakpointSRelation;
 $XSBS: $BS * $BreakpointXSRelation;
 // Define used breakpoints
-$Breakpoints: "MAX",
-// "L",
-"M",
-"S",
-"XS";
+$Breakpoints: "MAX", "L", "M", "S", "XS";
 // Screendesign max width and larger
-$BreakpointMAX: screen and (min-width: $ScreendesignWidthMAX + 0px, );
+$BreakpointMAX: screen and
+  (
+    min-width: $ScreendesignWidthMAX + 0px,
+  );
 // MacBook Pro (Retina, 15-inch, Mid 2015) screen width
-$BreakpointL: screen and (max-width: $ScreendesignWidthL + 0px, );
+$BreakpointL: screen and
+  (
+    max-width: $ScreendesignWidthL + 0px,
+  );
 // CLUS iPad minmax Max
-$BreakpointM: screen and (max-width: $ScreendesignWidthM + 0px, );
+$BreakpointM: screen and
+  (
+    max-width: $ScreendesignWidthM + 0px,
+  );
 // CLUS iPad minmax Min
-$BreakpointS: screen and (max-width: $ScreendesignWidthS + 0px, );
+$BreakpointS: screen and
+  (
+    max-width: $ScreendesignWidthS + 0px,
+  );
 // General mobile
-$BreakpointXS: screen and (max-width: $ScreendesignWidthXS + 0px, );
+$BreakpointXS: screen and
+  (
+    max-width: $ScreendesignWidthXS + 0px,
+  );
 // iPad Resolution (Used to fix bugs in iOS Safari)
-$BreakpointIPadVertical: screen and (width: 768px, ),
-screen and (height: 1024px, );
+$BreakpointIPadVertical: screen and
+    (
+      width: 768px,
+    ),
+  screen and
+    (
+      height: 1024px,
+    );
 // Colors
 $White: #eeeeee;
 $Black: #333333;
 $Yellow: #ffb700;
 $YellowDark: #c68e00;
-$YellowDarkest: #6E4500;
+$YellowDarkest: #6e4500;
 $Blue: #0dcdff;
 $BlueDark: #1291b3;
 $BlueDarkest: #004357;
-$Violet: #ee5454;
-$VioletDark: #7a0606;
-$VioletDarkest: #420303;
-$Green: #b8e535;
-$GreenDark: #7ea215;
-$GreenDarkest: #2d3a08;
-$Green: $Blue;
-$GreenDark: $BlueDark;
-$GreenDarkest: $BlueDarkest;
+$Violet: #e25151;
+$VioletDark: #720606;
+$VioletDarkest: #380303;
+// $Green: #ede6f2;
+// $GreenDark: #a5a1a9;
+// $GreenDarkest: #5e5c60;
+// $Green: #9bbb9e;
+// $GreenDark: #566c58;
+// $GreenDarkest: #2b362c;
+$Green: #cdccdf;
+$GreenDark: #78778e;
+$GreenDarkest: #222228;
+// $Green: #80ff72;
+// $GreenDark: #4c9944;
+// $GreenDarkest: #264c22;
+// $Green: #21d19f;
+// $GreenDark: #17926f;
+// $GreenDarkest: #093e2f;

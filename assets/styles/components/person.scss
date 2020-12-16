@@ -1,122 +1,348 @@
 // Styles
 // name mixin after scss person
 @mixin person($type: "") {
-    // get Basesize in correct relation to design width
-    $BS: getBaseSize($type);
-    .person {
-        color: $YellowDarkest;
-        background-image: radial-gradient(circle at center, $Yellow 0, $YellowDarkest 100vmin);
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            span {
-                display: inline-block;
-                font-family: $FontFamilyMain;
-                font-weight: 400;
-            }
+  // get Basesize in correct relation to design width
+  $BS: getBaseSize($type);
+  .person {
+    position: relative;
+    box-sizing: border-box;
+    padding: $BS * 64;
+    color: $BlueDarkest;
+    overflow-x: hidden;
+    &:after {
+      box-sizing: border-box;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 120vmax;
+      height: 120vmax;
+      background: transparent;
+      border-radius: 50%;
+      z-index: -1;
+      box-shadow: $BlueDarkest 0 0 $BS * 30;
+      transform: translate(-50%, 50%);
+      border: solid $Blue $BS * 3;
+      // background-image: linear-gradient(
+      //     90deg,
+      //     transparentize($YellowDarkest, 0.5),
+      //     transparent,
+      //     transparentize($YellowDarkest, 0.5)
+      //   ),
+      //   radial-gradient(circle at center, $Yellow, $YellowDarkest 100vmax);
+      background-image: radial-gradient(
+        ellipse at center,
+        $Blue,
+        transparentize($BlueDarkest, 0.05)
+      );
+
+      animation: MORPH forwards 0.25s ease-out;
+      @keyframes MORPH {
+        0% {
+          left: 0;
+          bottom: 0;
+          width: 120vmax;
+          height: 120vmax;
+          border-radius: 50%;
         }
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            span {
-                margin-left: $BS * 14;
-            }
+        100% {
+          left: $BS * 64;
+          bottom: $BS * 64;
+          width: calc(100% - #{$BS} * 128);
+          height: calc(100% - #{$BS} * 128);
+          border-radius: 0;
+          transform: translate(0, 0);
         }
-        p {
-            span {
-                display: inline-block;
-                font-family: $FontFamilyTitle;
-                margin-right: $BS * 12;
-            }
-        }
-        &__wrapper {
-            h1 {
-                span {
-                    @include bsFontSize($BS, 60);
-                }
-            }
-            h2 {
-                line-height: 100%;
-                margin-bottom: $BS * 20;
-                &+p {
-                    margin-top: 0;
-                    margin-bottom: $BS * 64;
-                }
-            }
-        }
-        &__helloContainer {
-            margin-top: $BS *32;
-            display: flex;
-            align-content: center;
-            label {
-                flex: 1;
-                position: relative;
-                margin: 0 $BS*16;
-                @include bsFontSize($BS, 8);
-                line-height: 100%;
-                span {
-                    position: absolute;
-                    top: 0;
-                    left: $BS * 16;
-                    transform: translateY(calc(-100% - #{$BS} * 4));
-                }
-            }
-            div {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-            p {
-                margin: 0;
-            }
-            input {
-                box-sizing: border-box;
-                height: 100%;
-                width: 100%;
-                min-width: $BS * 256;
-                border: none;
-                padding: $BS*4 $BS*16;
-                appearance: none;
-                outline: solid $BS*4 transparent;
-                transition: outline 0.3s ease-out;
-                background-color: $White;
-                &:focus {
-                    border: none;
-                    outline: solid $BS*4 $BlueDark;
-                }
-                &.error {
-                    outline: solid $BS*4 $Violet;
-                }
-            }
-            .button {
-                margin-bottom: 0;
-                border: solid $BS*3 $Yellow;
-            }
-        }
-        &__helloWrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            justify-content: center;
-            margin: $BS*32 0 $BS*64;
-            padding: $BS*32 $BS*32 $BS*32;
-            background-color: $YellowDarkest;
-            color: $Yellow;
-        }
+      }
     }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      span {
+        display: inline-block;
+        font-family: $FontFamilyMain;
+        font-weight: 400;
+      }
+    }
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      span {
+        margin-left: $BS * 14;
+      }
+    }
+    p {
+      span {
+        display: inline-block;
+        font-family: $FontFamilyTitle;
+        margin-right: $BS * 12;
+      }
+    }
+    &__hashtags {
+      display: flex;
+      flex-wrap: wrap;
+      // text-transform: uppercase;
+      // font-family: $FontFamilyTitle;
+      @include bsFontSize($BS, 32);
+      line-height: 110%;
+      color: $Blue;
+      text-shadow: $BlueDark 0 0 $BS * 6;
+      margin: 0;
+      margin-bottom: $BS * 32;
+
+      li {
+        padding-left: $BS * 28;
+
+        &:first-child {
+          padding-left: 0;
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+    &__wrapper {
+      box-sizing: border-box;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+      padding: $BS * 64 $BS * 64 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: auto;
+      h1 {
+        span {
+          @include bsFontSize($BS, 60);
+        }
+      }
+      h2 {
+        line-height: 100%;
+        margin-bottom: $BS * 20;
+        & + p {
+          margin-top: 0;
+          margin-bottom: $BS * 64;
+        }
+      }
+    }
+    &__buttonWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 $BS * -64;
+      .button {
+        // padding: $BS * 50 $BS * 17;
+        // background-color: transparent;
+        text-align: center;
+        margin: 0;
+        color: $BlueDarkest;
+        flex-grow: 1;
+        &:hover {
+          color: $Blue;
+          background-color: transparent;
+          &:after {
+            background-color: transparent;
+          }
+        }
+        &:after {
+          border-left-color: transparent;
+          border-top-color: transparent;
+        }
+      }
+    }
+    &__helloContainer {
+      margin-top: $BS * 16;
+      display: flex;
+      align-content: center;
+      label {
+        flex: 1;
+        position: relative;
+        margin: 0 $BS * 16;
+        @include bsFontSize($BS, 8);
+        line-height: 100%;
+        span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(calc(-100% - #{$BS} * 4));
+        }
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      p {
+        margin: 0;
+      }
+      input {
+        box-sizing: border-box;
+        height: calc(100% - #{$BS} * 6);
+        width: 100%;
+        min-width: $BS * 256;
+        border: none;
+        padding: $BS * 4 $BS * 16;
+        appearance: none;
+        outline: solid $BS * 3 $Blue;
+        transition: outline 0.3s ease-out, background-color 0.3s ease-out;
+        background-color: transparent;
+        color: $Blue;
+        font-weight: 700;
+        @include bsFontSize($BS, 20);
+        text-transform: uppercase;
+        font-family: $FontFamilyTitle;
+        transform: translateY($BS * 3);
+        &:focus,
+        &:hover {
+          border: none;
+          color: $BlueDarkest;
+          background: $Blue;
+        }
+        &.error {
+          outline: solid $BS * 3 $Violet;
+        }
+      }
+      .button {
+        margin-bottom: 0;
+        border: solid $BS * 3 $Blue;
+        background-color: $Blue;
+        color: $BlueDarkest;
+        &:hover {
+          color: $Blue;
+        }
+      }
+    }
+    &__helloWrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      margin: $BS * 32 $BS * -62 0;
+      padding: $BS * 48 $BS * 64 $BS * 64;
+      background-color: transparentize($BlueDarkest, 0.5);
+      color: $Blue;
+    }
+    &__upperWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+    }
+  }
 }
 
 // Add person
 @include person();
 // Add basic person with breakpoints
 @each $Breakpoint in $Breakpoints {
-    @include breakpoint(#{$Breakpoint}) {
-        @include person(#{$Breakpoint});
+  @include breakpoint(#{$Breakpoint}) {
+    @include person(#{$Breakpoint});
+  }
+}
+
+@include breakPointM() {
+  $BS: getBaseSize("M");
+  .person {
+    display: block;
+    padding: 0;
+    &__wrapper {
+      padding: $BS * 128;
     }
+    &__helloWrapper {
+      h2 {
+        margin-bottom: $BS * 32;
+      }
+    }
+    &__helloContainer {
+      flex-wrap: wrap;
+      margin-top: $BS * 0;
+      div {
+        &:first-child {
+          width: 100%;
+          margin-bottom: $BS * 40;
+        }
+      }
+      .button {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+        margin-top: $BS * 32;
+      }
+      label {
+        &:first-of-type {
+          margin-left: 0;
+        }
+        &:last-of-type {
+          margin-right: 0;
+        }
+        span {
+          left: 0;
+        }
+      }
+      input {
+        padding: $BS * 16;
+      }
+    }
+
+    box-sizing: border-box;
+    animation: MORPH forwards 0.25s ease-out;
+    @keyframes MORPH {
+      0% {
+        left: 0;
+        bottom: 0;
+        width: 120vmax;
+        height: 120vmax;
+        border-radius: 50%;
+      }
+      100% {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        transform: translate(0, 0);
+      }
+    }
+
+    &:after {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@include breakPointS() {
+  $BS: getBaseSize("S");
+  .person {
+    &__helloContainer {
+      flex-direction: column;
+      align-items: center;
+      & > div {
+        display: none;
+      }
+    }
+    &__buttonWrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    label {
+      margin: $BS * 48 0 $BS * 16;
+      width: 100%;
+    }
+    .button {
+      display: block;
+      width: calc(50% - #{$BS} * 10.8);
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+    }
+  }
 }

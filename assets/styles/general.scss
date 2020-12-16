@@ -1,291 +1,313 @@
 // Styles
 // name mixin after scss component
 @mixin styles($type: "") {
-    // get Basesize in correct relation to design width
-    $BS: getBaseSize($type);
-    html {
-        font-family: $FontFamilyMain;
-        font-weight: 300;
-        // only set font-size here, if really needed
-        // font-size: 16px;
-        color: $Black;
-        background-color: $Black;
-        scroll-behavior: smooth;
-        width: 100%;
-        height: 100%;
+  // get Basesize in correct relation to design width
+  $BS: getBaseSize($type);
+  html {
+    font-family: $FontFamilyMain;
+    font-weight: 300;
+    // only set font-size here, if really needed
+    // font-size: 16px;
+    color: $Black;
+    background-color: $Black;
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    @include bsFontSize($BS, $BaseRemSize);
+    line-height: 150%;
+    max-width: $ScreendesignWidthMAX + 0px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  &::selection {
+    color: $Yellow;
+    background: $YellowDarkest;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $FontFamilyTitle;
+    line-height: 130%;
+    font-weight: 900;
+    margin-top: 0;
+    &:first-child {
     }
-    body {
-        @include bsFontSize($BS, $BaseRemSize);
-        line-height: 150%;
-        max-width: $ScreendesignWidthMAX + 0px;
-        margin: 0 auto;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+    &:last-child {
+      margin-bottom: 0;
     }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: $FontFamilyTitle;
-        line-height: 130%;
-        font-weight: 900;
-        margin-top: 0;
-        &:first-child {}
-        &:last-child {
-            margin-bottom: 0;
-        }
+  }
+  h1 {
+    @include bsFontSize($BS, 62);
+  }
+  h2 {
+    @include bsFontSize($BS, 44);
+  }
+  h3 {
+    @include bsFontSize($BS, 36);
+  }
+  h4 {
+    @include bsFontSize($BS, 26);
+  }
+  h5,
+  h6 {
+    @include bsFontSize($BS, 20);
+  }
+  input {
+    border-radius: 0;
+    appearance: none;
+  }
+  input,
+  button {
+    font-family: $FontFamilyMain;
+  }
+  p {
+    padding: 0;
+    &:first-child {
+      margin-top: 0;
     }
-    h1 {
-        @include bsFontSize($BS, 62);
+    &:last-child {
+      margin-bottom: 0;
     }
-    h2 {
-        @include bsFontSize($BS, 44);
+  }
+  ul,
+  li {
+    padding: 0;
+    list-style: none;
+    &:first-child {
+      margin-top: 0;
     }
-    h3 {
-        @include bsFontSize($BS, 36);
+    &:last-child {
+      margin-bottom: 0;
     }
-    h4 {
-        @include bsFontSize($BS, 26);
+  }
+  li {
+    // position: relative;
+    padding-left: $BS * 20;
+    &:before {
+      content: "\2022";
+      margin-left: $BS * -20;
+      margin-right: $BS * 10;
+      font-size: 110%;
+      line-height: 50%;
     }
-    h5,
-    h6 {
-        @include bsFontSize($BS, 20);
+  }
+  a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      border-bottom: $BS $Black solid;
     }
-    input,
-    button {
-        font-family: $FontFamilyMain;
+    &:hover {
     }
-    p {
-        padding: 0;
-        &:first-child {
-            margin-top: 0;
-        }
-        &:last-child {
-            margin-bottom: 0;
-        }
+    &:active {
     }
-    ul,
-    li {
-        padding: 0;
-        list-style: none;
-        &:first-child {
-            margin-top: 0;
-        }
-        &:last-child {
-            margin-bottom: 0;
-        }
+  }
+  code {
+    display: block;
+    background-color: $Black;
+    color: $White;
+    border-radius: $BS * 2;
+    padding: $BS * 14 $BS * 16 $BS * 16;
+    margin: $BS * 16 0;
+  }
+  .button,
+  button {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    color: $Blue;
+    padding: $BS * 18 $BS * 50 $BS * 17;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-right: $BS * 16;
+    margin-bottom: $BS * 16;
+    background-color: transparent;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out,
+      box-shadow 0.3s ease-out;
+    line-height: 100%;
+    // transform: skew(-5deg);
+    box-shadow: transparentize($Blue, 0.5) 0 0 $BS * 8;
+    text-shadow: transparentize($Blue, 0.5) 0 0 $BS * 4;
+    cursor: pointer;
+    &:disabled {
+      cursor: wait;
+      opacity: 0.5;
     }
-    li {
-        // position: relative;
-        padding-left: $BS * 20;
-        &:before {
-            content: "\2022";
-            margin-left: $BS * -20;
-            margin-right: $BS * 10;
-            font-size: 110%;
-            line-height: 50%;
-        }
+    &:hover,
+    &:checked {
+      box-shadow: transparentize($Blue, 1) 0 0 $BS * 8;
+      color: $BlueDarkest;
+      &:after {
+        background-color: $Blue;
+      }
     }
-    a {
-        position: relative;
-        display: inline-block;
-        text-decoration: none;
-        color: inherit;
-        &:after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            border-bottom: $BS $Black solid;
-        }
-        &:hover {}
-        &:active {}
+    &:after {
+      content: "";
+      position: absolute;
+      box-sizing: border-box;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border: $BS * 3 $Blue solid;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.3s ease-out, height 0.2s ease-out,
+        width 0.4s ease-out, border-color 0.3s ease-out;
+      pointer-events: none;
+      z-index: -1;
     }
-    code {
-        display: block;
-        background-color: $Black;
-        color: $White;
-        border-radius: $BS * 2;
-        padding: $BS * 14 $BS * 16 $BS * 16;
-        margin: $BS * 16 0;
+    &:last-child {
+      margin-right: 0;
     }
-    .button,
-    button {
-        box-sizing: border-box;
-        position: relative;
-        display: inline-block;
-        font-weight: 700;
-        color: $Blue;
-        padding: $BS * 18 $BS * 50 $BS * 17;
-        text-transform: uppercase;
-        transition: color 0.3s ease-out;
-        text-decoration: none;
-        margin-right: $BS * 16;
-        margin-bottom: $BS * 16;
+    &--secondary {
+      color: $BlueDarkest;
+      background-color: $Blue;
+      &:after {
+        border-color: $Blue;
+      }
+      &:hover {
         background-color: transparent;
-        transition: background-color 0.3s ease-out;
-        line-height: 100%;
-        cursor: pointer;
-        &:hover,
-        &:checked {
-            color: $BlueDarkest;
-            &:after {
-                background-color: $Blue;
-            }
-        }
+      }
+    }
+    &--third {
+      background-color: $Blue;
+      color: $BlueDarkest;
+      &:after {
+        border-color: $Blue;
+      }
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  button {
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+    background: none;
+    outline: none;
+    margin: 0;
+    border: none;
+    text-align: inherit;
+    line-height: 100%;
+  }
+  .tour__stage {
+    .button {
+      color: $Green;
+      &:hover,
+      &:checked {
+        color: $GreenDarkest;
         &:after {
-            content: '';
-            position: absolute;
-            box-sizing: border-box;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            border: $BS*3 $Blue solid;
-            transform: translate(-50%, -50%);
-            transition: background-color 0.3s ease-out, height 0.2s ease-out, width 0.4s ease-out, border-color 0.3s ease-out;
-            pointer-events: none;
-            z-index: -1;
+          background-color: $Green;
         }
-        &:last-child {
-            margin-right: 0;
+      }
+      &:after {
+        border-color: $Green;
+      }
+      &--secondary {
+        color: $Green;
+        background-color: $GreenDarkest;
+        &:after {
+          border-color: $GreenDarkest;
         }
-        &--secondary {
-            color: $Blue;
-            background-color: $BlueDarkest;
-            &:after {
-                border-color: $BlueDarkest;
-            }
-            &:hover {
-                background-color: transparent;
-            }
+        &:hover {
+          background-color: transparent;
         }
-        &--third {
-            background-color: $Blue;
-            color: $BlueDarkest;
-            &:after {
-                border-color: $Blue;
-            }
-            &:hover {
-                background-color: transparent;
-            }
+      }
+    }
+  }
+  .person {
+    .button {
+      color: $Yellow;
+      &:hover,
+      &:checked {
+        color: $YellowDarkest;
+        &:after {
+          background-color: $Yellow;
         }
-    }
-    button {
-        cursor: pointer;
-        color: inherit;
-        font-family: inherit;
-        background: none;
-        outline: none;
-        margin: 0;
-        border: none;
-        text-align: inherit;
-        line-height: 100%;
-    }
-    .tour__stage {
-        .button {
-            color: $Green;
-            &:hover,
-            &:checked {
-                color: $GreenDarkest;
-                &:after {
-                    background-color: $Green;
-                }
-            }
-            &:after {
-                border-color: $Green;
-            }
-            &--secondary {
-                color: $Green;
-                background-color: $GreenDarkest;
-                &:after {
-                    border-color: $GreenDarkest;
-                }
-                &:hover {
-                    background-color: transparent;
-                }
-            }
+      }
+      &:after {
+        border-color: $Yellow;
+      }
+      &--secondary {
+        color: $BlueDarkest;
+        background-color: $Blue;
+        &:after {
+          border-color: $Blue;
         }
-    }
-    .person {
-        .button {
-            color: $Yellow;
-            &:hover,
-            &:checked {
-                color: $YellowDarkest;
-                &:after {
-                    background-color: $Yellow;
-                }
-            }
-            &:after {
-                border-color: $Yellow;
-            }
-            &--secondary {
-                color: $Yellow;
-                background-color: $YellowDarkest;
-                &:after {
-                    border-color: $YellowDarkest;
-                }
-                &:hover {
-                    background-color: transparent;
-                }
-            }
-            &--third {
-                background-color: $Yellow;
-                color: $YellowDarkest;
-                margin-left: $BS * 16;
-                &:after {
-                    border-color: $Yellow;
-                }
-                &:hover {
-                    background-color: transparent;
-                    color: $Yellow;
-                    &:after {
-                        border-color: $Yellow;
-                    }
-                }
-            }
+        &:hover {
+          color: $BlueDark;
+          background-color: transparent;
         }
+      }
+      &--third {
+        background-color: $Yellow;
+        color: $YellowDarkest;
+        margin-left: $BS * 16;
+        &:after {
+          border-color: transparent;
+        }
+        &:hover {
+          background-color: transparent;
+          color: $Blue;
+          &:after {
+            border-color: transparent;
+            background-color: transparent;
+          }
+        }
+      }
     }
-    strong {
-        font-weight: 700;
-    }
-    img,
-    canvas {
-        display: block;
-    }
-    .mobile_only {
-        display: none;
-    }
-    .desktop_only {
-        display: block;
-    }
-    .head {
-        position: fixed;
-        z-index: 100;
-        pointer-events: none;
-    }
+  }
+  strong {
+    font-weight: 700;
+  }
+  img,
+  canvas {
+    display: block;
+  }
+  .mobile_only {
+    display: none;
+  }
+  .desktop_only {
+    display: block;
+  }
+  .head {
+    position: fixed;
+    z-index: 100;
+    pointer-events: none;
+  }
 }
 
 // Add styles
 @include styles();
 // Add basic styles with breakpoints
 @each $Breakpoint in $Breakpoints {
-    @include breakpoint(#{$Breakpoint}) {
-        @include styles(#{$Breakpoint});
-    }
+  @include breakpoint(#{$Breakpoint}) {
+    @include styles(#{$Breakpoint});
+  }
 }
 
 // Add custom styles with breakpoints
 @include breakPointS() {
-    .mobile_only {
-        display: block;
-    }
-    .desktop_only {
-        display: none;
-    }
+  .mobile_only {
+    display: block;
+  }
+  .desktop_only {
+    display: none;
+  }
 }

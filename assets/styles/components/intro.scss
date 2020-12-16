@@ -1,179 +1,269 @@
 // wrap your code in a mixin
 @mixin intro($type: "") {
-    // get Basesize in correct relation to design width
-    $BS: getBaseSize($type);
-    // define the styles of your component as designed
-    .intro {
-        box-sizing: border-box;
+  // get Basesize in correct relation to design width
+  $BS: getBaseSize($type);
+  // define the styles of your component as designed
+  .intro {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1280px;
+    background-color: $Yellow;
+    background-image: linear-gradient(
+        90deg,
+        transparentize($BlueDarkest, 0.5),
+        transparent,
+        transparentize($BlueDarkest, 0.5)
+      ),
+      // radial-gradient(
+      //   $BS * 120 $BS * 60 at 7% 94%,
+      //   transparentize($Yellow, 0.7),
+      //   transparent 50vmin
+      // ),
+      radial-gradient(
+          circle at center 100%,
+          transparentize($Green, 0.8),
+          transparent 40vmin
+        ),
+      // radial-gradient(
+      //   $BS * 120 $BS * 60 at 93% 94%,
+      //   transparentize($Violet, 0.7),
+      //   transparent 50vmin
+      // ),
+      radial-gradient(circle at center, $Blue, $BlueDarkest 100vmin);
+    color: $BlueDarkest;
+    overflow: hidden;
+    z-index: 1;
+    &__wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      transform: translateY(-5%);
+      @supports (mix-blend-mode: luminosity) {
+        mix-blend-mode: luminosity;
+      }
+    }
+    &__title {
+      position: relative;
+      margin: 0;
+      letter-spacing: 2px;
+      @include bsFontSize($BS, 220);
+      line-height: 80%;
+      pointer-events: none;
+      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 3 0,
+        rgba(0, 0, 0, 0.2) 0 $BS * -3 0;
+      z-index: 2;
+    }
+    &__list {
+      box-sizing: border-box;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: $BS * 64;
+      .button {
+        margin: 0;
+      }
+    }
+    &__rows {
+      width: 100%;
+      padding: $BS * 60 $BS * 16;
+    }
+    &__row {
+      position: relative;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      text-transform: uppercase;
+      z-index: 10;
+      margin-bottom: $BS * 0;
+      color: $BlueDarkest;
+      &:nth-child(2) {
+        align-items: flex-start;
+        z-index: 8;
+        .intro {
+          &__title {
+            transform-origin: center top;
+            @include bsFontSize($BS, 189);
+            line-height: 80%;
+            color: $BlueDark;
+          }
+        }
+      }
+      &:nth-child(3) {
+        .intro {
+          &__title {
+            @include bsFontSize($BS, 131);
+            line-height: 85%;
+            color: $Blue;
+          }
+        }
+      }
+    }
+    .button {
+      min-width: $BS * 220;
+      text-align: center;
+      &:first-of-type {
+        margin-left: 0;
+        &:hover {
+          color: $YellowDarkest;
+          &:after {
+            background-color: $YellowDark;
+            background-image: radial-gradient(
+              circle at center,
+              $Yellow,
+              $YellowDarkest
+            );
+          }
+        }
+      }
+      &:nth-of-type(2) {
+        align-self: flex-end;
+        &:hover {
+          color: $GreenDarkest;
+          &:after {
+            background-color: $GreenDark;
+            background-image: radial-gradient(
+              circle at center,
+              $Green,
+              $GreenDarkest
+            );
+          }
+        }
+      }
+      &:nth-of-type(3) {
+        &:hover {
+          color: $VioletDarkest;
+          &:after {
+            background-color: $VioletDark;
+            background-image: radial-gradient(
+              circle at center,
+              $Violet,
+              $VioletDarkest
+            );
+          }
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:after {
+        content: "";
         position: absolute;
-        left: 0;
-        top: 0;
+        box-sizing: border-box;
+        top: 50%;
+        left: 50%;
         width: 100%;
         height: 100%;
-        line-height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        perspective: 1280px;
-        background-color: $Yellow;
-        background-image: radial-gradient(circle at center, $Blue, $BlueDarkest);
-        color: $BlueDarkest;
-        overflow: hidden;
-        z-index: 1;
-        &__wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            //transform: rotatey(10deg);
-            // padding-top: $BS * 48;
-            transform: translateY(-5%);
-            @supports(mix-blend-mode: luminosity) {
-                mix-blend-mode: luminosity;
-            }
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        transition: background-color 0.5s ease-out, height 0.25s ease-in-out,
+          width 0.25s ease-in-out, border-radius 0.15s ease-in;
+        pointer-events: none;
+      }
+      &:hover {
+        &:after {
+          width: 120vmax;
+          height: 120vmax;
+          border-radius: 50%;
+          z-index: -1;
+          box-shadow: $BlueDarkest 0 0 $BS * 30;
         }
-        &__title {
-            position: relative;
-            margin: 0;
-            letter-spacing: 2px;
-            @include bsFontSize($BS, 220);
-            line-height: 80%;
-            pointer-events: none;
-            text-shadow: rgba(255, 255, 255, 0.2) 0 $BS*3 0, rgba(0, 0, 0, 0.2) 0 $BS*-3 0;
-            // filter: blur($BS * 0.5);
-            z-index: 2;
-        }
-        &__list {
-            box-sizing: border-box;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: $BS * 64;
-            .button {
-                margin: 0;
-            }
-        }
-        &__rows {
-            width: 100%;
-            padding: $BS*60 $BS*16;
-        }
-        &__row {
-            position: relative;
-            background-color: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            text-transform: uppercase;
-            z-index: 10;
-            margin-bottom: $BS* 0;
-            &:nth-child(2) {
-                align-items: flex-start;
-                z-index: 8;
-                .intro {
-                    &__title {
-                        transform-origin: center top;
-                        @include bsFontSize($BS, 189);
-                        line-height: 80%;
-                        color: $BlueDark;
-                    }
-                }
-            }
-            &:nth-child(3) {
-                .intro {
-                    &__title {
-                        @include bsFontSize($BS, 131);
-                        line-height: 85%;
-                        color: $Blue;
-                    }
-                }
-            }
-        }
-        .button {
-            min-width: $BS * 220;
-            text-align: center;
-            &:first-of-type {
-                margin-left: 0;
-                &:hover {
-                    color: $YellowDarkest;
-                    &:after {
-                        background-color: $YellowDark;
-                        background-image: radial-gradient(circle at center, $Yellow, $YellowDarkest);
-                    }
-                }
-            }
-            &:nth-of-type(2) {
-                align-self: flex-end;
-                &:hover {
-                    color: $GreenDarkest;
-                    &:after {
-                        background-color: $GreenDark;
-                        background-image: radial-gradient(circle at center, $Green, $GreenDarkest);
-                    }
-                }
-            }
-            &:nth-of-type(3) {
-                &:hover {
-                    color: $VioletDarkest;
-                    &:after {
-                        background-color: $VioletDark;
-                        background-image: radial-gradient(circle at center, $Violet, $VioletDarkest);
-                    }
-                }
-            }
-            &:last-child {
-                margin-right: 0;
-            }
-            &:after {
-                content: '';
-                position: absolute;
-                box-sizing: border-box;
-                top: 50%;
-                left: 50%;
-                width: 100%;
-                height: 100%;
-                transform: translate(-50%, -50%);
-                z-index: -1;
-                transition: background-color 0.5s ease-out, height 0.35s ease-in-out, width 0.35s ease-in-out, border-radius 0.3s ease-in;
-                pointer-events: none;
-            }
-            &:hover {
-                &:after {
-                    width: 120vmax;
-                    height: 120vmax;
-                    border-radius: 50%;
-                    z-index: -1;
-                    box-shadow: $BlueDarkest 0 0 $BS*30;
-                }
-            }
-        }
-        &__head {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            @supports(mix-blend-mode: luminosity) {
-                mix-blend-mode: luminosity;
-            }
-        }
+      }
     }
+    &__head {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @supports (mix-blend-mode: luminosity) {
+        mix-blend-mode: luminosity;
+      }
+    }
+  }
 }
 
 // Render basic styles as designed
 @include intro();
 // Render basic styles with breakpoints
 @each $Breakpoint in $Breakpoints {
-    @include breakpoint(#{$Breakpoint}) {
-        @include intro(#{$Breakpoint});
-    }
+  @include breakpoint(#{$Breakpoint}) {
+    @include intro(#{$Breakpoint});
+  }
 }
 
 // Render custom styles with breakpoints
+@include breakPointM() {
+  $BS: getBaseSize("M");
+  .intro {
+    &__title {
+      @include bsFontSize($BS, 110);
+      line-height: 80%;
+      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 2 0,
+        rgba(0, 0, 0, 0.2) 0 $BS * -2 0;
+    }
+    &__row {
+      &:nth-child(2) {
+        .intro {
+          &__title {
+            @include bsFontSize($BS, 94);
+            line-height: 80%;
+          }
+        }
+      }
+      &:nth-child(3) {
+        .intro {
+          &__title {
+            @include bsFontSize($BS, 64.5);
+            line-height: 85%;
+          }
+        }
+      }
+    }
+  }
+}
+
 @include breakPointS() {
-    $BS: getBaseSize("S");
+  $BS: getBaseSize("S");
+  .intro {
+    justify-content: flex-start;
+    &__title {
+      @include bsFontSize($BS, 82);
+      line-height: 85%;
+      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 2 0,
+        rgba(0, 0, 0, 0.2) 0 $BS * -2 0;
+    }
+    &__row {
+      &:nth-child(2) {
+        .intro {
+          &__title {
+            @include bsFontSize($BS, 70);
+            line-height: 100%;
+          }
+        }
+      }
+      &:nth-child(3) {
+        .intro {
+          &__title {
+            @include bsFontSize($BS, 48);
+            line-height: 100%;
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,51 +1,71 @@
 // Styles
 // name mixin after scss loader
 @mixin loader($type: "") {
-    // get Basesize in correct relation to design width
-    $BS: getBaseSize($type);
-    .loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(circle at center, $Blue, $BlueDarkest);
-        z-index: 999;
-        cursor: wait;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: opacity 0.5s ease-out;
-        &__wrapper {
-            position: relative;
-            width: $BS * 320;
-            height: $BS * 32;
-            border-radius: $BS * 2;
-            background: $BlueDarkest;
-            box-shadow: $BlueDarkest 0 0 $BS*50;
-            overflow: hidden;
-        }
-        &__bar {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            background: $Blue;
-            transition: width 0.25s ease-out;
-        }
-        &.hidden {
-            opacity: 0;
-        }
+  // get Basesize in correct relation to design width
+  $BS: getBaseSize($type);
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, $Blue, $BlueDarkest);
+    z-index: 999;
+    cursor: wait;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out;
+    &__wrapper {
+      position: relative;
+      width: $BS * 320;
+      height: $BS * 32;
+      background: $BlueDarkest;
+      box-shadow: $BlueDarkest 0 0 $BS * 50;
+      overflow: hidden;
     }
+    &__bar {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: $Blue;
+      transition: width 0.25s ease-out;
+    }
+    // &.portfolioLoader {
+    //   background-image: linear-gradient(
+    //       90deg,
+    //       transparentize($VioletDarkest, 0.5),
+    //       transparent,
+    //       transparentize($VioletDarkest, 0.5)
+    //     ),
+    //     radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmax);
+    //   .loader {
+    //     &__bar {
+    //       background: $Violet;
+    //     }
+    //     &__wrapper {
+    //       background: $VioletDarkest;
+    //       box-shadow: $VioletDarkest 0 0 $BS * 50;
+    //     }
+    //   }
+    // }
+    &.hiding {
+      opacity: 0;
+    }
+    &.hidden {
+      display: none;
+    }
+  }
 }
 
 // Add loader
 @include loader();
 // Add basic loader with breakpoints
 @each $Breakpoint in $Breakpoints {
-    @include breakpoint(#{$Breakpoint}) {
-        @include loader(#{$Breakpoint});
-    }
+  @include breakpoint(#{$Breakpoint}) {
+    @include loader(#{$Breakpoint});
+  }
 }
