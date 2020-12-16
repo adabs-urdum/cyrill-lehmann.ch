@@ -87,7 +87,7 @@ class Portfolio extends Overlay {
             </div>{" "}
             {this.loader.projects.length ? (
               <button
-                className="button button--third"
+                className="button button--fourth"
                 onClick={(e) => {
                   this.controller.setRoute("contact");
                 }}

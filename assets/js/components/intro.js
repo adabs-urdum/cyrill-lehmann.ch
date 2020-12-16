@@ -15,6 +15,12 @@ class Intro {
     this.currentStage = null;
     this.loader = init.loader;
 
+    this.isFullscreen = false;
+    this.fullscreenTrigger = document.querySelector("#fullscreenTrigger");
+    if (!document.fullscreenEnabled) {
+      this.fullscreenTrigger.style.display = "none";
+    }
+
     // add assets for tour
     this.loader.add("./../../dist/img/wpcustomtheme.jpg");
     this.loader.add("./../../dist/img/blender.jpg");
@@ -30,6 +36,16 @@ class Intro {
       e.clientY = e.touches[0].clientY;
       this.onMouseMove(e);
     });
+    this.fullscreenTrigger.addEventListener("click", this.onFullscreenClick);
+  };
+
+  onFullscreenClick = (e) => {
+    if (this.isFullscreen) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen();
+    }
+    this.isFullscreen = !this.isFullscreen;
   };
 
   onMouseMove = (e) => {
@@ -82,7 +98,7 @@ class Intro {
           </button>{" "}
           <button
             onClick={(e) => this.controller.setRoute("tour/1")}
-            className="intro__button button button--secondary desktop_only"
+            className="intro__button button button--third desktop_only"
           >
             Tour{" "}
           </button>{" "}

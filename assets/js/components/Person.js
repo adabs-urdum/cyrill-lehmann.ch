@@ -47,9 +47,9 @@ class Person extends Overlay {
         .get(`${fetchUrl}/sendhello/?username=${nameVal}&mail=${mailVal}`)
         .then((response) => {
           if (response.data.mailSuccess) {
-            // this.helloWrapper.innerHTML = `<h4>Hallo ${nameVal}! Ich antworte dir bestimmt noch per E-Mail.</h4>`;
+            this.helloWrapper.innerHTML = `<h3>Ciao ${nameVal}! Ich melde mich sicher noch per E-Mail.</h3>`;
           } else {
-            this.helloWrapper.innerHTML = `<h4>Hallo ${nameVal}! Leider hat der Versand technisch nicht funktioniert.</h4>`;
+            this.helloWrapper.innerHTML = `<h3>Ciao ${nameVal}! Leider hat der Versand technisch nicht funktioniert.</h3>`;
           }
         });
     }

@@ -80,6 +80,55 @@
         }
       }
     }
+    &__fullscreen {
+      position: absolute;
+      top: $BS * 64;
+      left: $BS * 64;
+      width: $BS * 52;
+      height: $BS * 52;
+      z-index: 1;
+      .button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: $BS * 16;
+        right: $BS * 16;
+        width: calc(30% - #{$BS} * 6);
+        height: calc(30% - #{$BS} * 6);
+        border-right: solid $Blue $BS * 3;
+        border-top: solid $Blue $BS * 3;
+        background-image: linear-gradient();
+        pointer-events: none;
+      }
+
+      &:after {
+        top: auto;
+        right: auto;
+        bottom: $BS * 16;
+        left: $BS * 16;
+        border-right: none;
+        border-top: none;
+        border-left: solid $Blue $BS * 3;
+        border-bottom: solid $Blue $BS * 3;
+      }
+
+      &:hover {
+        &:before,
+        &:after {
+          border-color: $BlueDarkest;
+        }
+      }
+    }
     &__shittyBrowser {
       position: absolute;
       top: $BS * 64;

@@ -185,10 +185,24 @@
       }
     }
     &--third {
-      background-color: $Blue;
+      background-color: transparent;
       color: $BlueDarkest;
+      box-shadow: transparentize($BlueDarkest, 0.5) 0 0 $BS * 8;
+      text-shadow: transparentize($BlueDarkest, 0.5) 0 0 $BS * 4;
       &:after {
-        border-color: $Blue;
+        border-color: $BlueDarkest;
+      }
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    &--fourth {
+      background-color: $BlueDarkest;
+      color: $Blue;
+      box-shadow: transparentize($BlueDarkest, 0.5) 0 0 $BS * 8;
+      text-shadow: transparentize($Blue, 0.5) 0 0 $BS * 4;
+      &:after {
+        border-color: $BlueDarkest;
       }
       &:hover {
         background-color: transparent;
@@ -290,6 +304,26 @@
     position: fixed;
     z-index: 100;
     pointer-events: none;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: $BS * 16;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $Blue;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $BlueDark;
   }
 }
 
