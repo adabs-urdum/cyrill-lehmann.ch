@@ -23,21 +23,11 @@
         transparent,
         transparentize($BlueDarkest, 0.5)
       ),
-      // radial-gradient(
-      //   $BS * 120 $BS * 60 at 7% 94%,
-      //   transparentize($Yellow, 0.7),
-      //   transparent 50vmin
-      // ),
       radial-gradient(
-          circle at center 100%,
-          transparentize($Green, 0.8),
-          transparent 40vmin
-        ),
-      // radial-gradient(
-      //   $BS * 120 $BS * 60 at 93% 94%,
-      //   transparentize($Violet, 0.7),
-      //   transparent 50vmin
-      // ),
+        circle at center 100%,
+        transparentize($Green, 0.8),
+        transparent 40vmin
+      ),
       radial-gradient(circle at center, $Blue, $BlueDarkest 100vmin);
     color: $BlueDarkest;
     overflow: hidden;
