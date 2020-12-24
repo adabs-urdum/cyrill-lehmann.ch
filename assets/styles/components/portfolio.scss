@@ -25,8 +25,9 @@
 
     &__title {
       text-align: center;
-      color: $BlueDarkest;
-      text-shadow: $BlueDarkest 0 0 $BS * 2;
+      color: $Blue;
+      text-shadow: transparentize($Black, 0.4) $BS * 2 $BS * 2 $BS * 4,
+        transparentize($White, 0.8) $BS * -2 $BS * -2 $BS * 4;
       margin-bottom: $BS * 128;
       p {
         margin: 0;
@@ -39,7 +40,6 @@
       flex-direction: column;
       align-items: center;
       perspective: 100vw;
-      transform-style: preserve-3d;
     }
     &__project {
       position: relative;
@@ -48,14 +48,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      margin: $BS * 8 auto;
-      max-width: $BS * 768;
-      box-shadow: $Blue 0 0 $BS * 16;
-      padding: $BS * 32;
-      border: solid $Blue $BS * 3;
+      margin: $BS * 64 auto;
+      // box-shadow: $Blue $BS * -3 $BS * -3 $BS * 10,
+      //   $BlueDarkest $BS * 3 $BS * 3 $BS * 10;
+      padding: 0 $BS * 32 $BS * 32;
+      padding: 0;
       transform-origin: center center 0;
       transition: transform 0.15s ease-out, background-color 0.15s ease-out,
         box-shadow 0.15s ease-out;
+      background-color: transparentize($BlueDarkest, 0.5);
 
       // &:nth-child(even) {
       //   transform: translateX($BS * -128) rotate(9deg);
@@ -76,42 +77,64 @@
 
       &:hover {
         z-index: 100;
-        box-shadow: $BlueDarkest 0 0 $BS * 16;
+        background-color: transparentize($Blue, 0.6);
+        backdrop-filter: blur($BS * 100);
+
+        .portfolio__projectDescription {
+          color: $BlueDarkest;
+        }
+        .portfolio__projectImageWrapper {
+          mix-blend-mode: normal;
+        }
+        .portfolio__tags {
+          color: $BlueDarkest;
+        }
+      }
+
+      &:nth-child(even) {
+        .portfolio__projectContent {
+          flex-direction: row-reverse;
+        }
+        .portfolio__projectDescription {
+          text-align: right;
+        }
+        .portfolio__tags {
+          justify-content: flex-end;
+        }
+      }
+
+      &:first-child {
+        margin-top: 0;
       }
 
       &:last-child {
         margin-bottom: $BS * 128;
       }
-
-      &--work {
-        transform: translateX($BS * -128) rotate(6deg);
-        &:hover {
-          transform: translateX($BS * -128) scale(1.1);
-          background-color: transparentize($VioletDarkest, 0.5);
-        }
-      }
-
-      &--fun {
-        // border: solid $Yellow $BS * 3;
-        transform: translateX($BS * 128) rotate(-6deg);
-        &:hover {
-          transform: translateX($BS * 128) scale(1.1);
-          background-color: transparentize($BlueDarkest, 0.5);
-        }
-      }
+    }
+    &__projectContent {
+      display: flex;
+      align-items: center;
+    }
+    &__projectClient {
+      @include bsFontSize($BS, 16);
     }
     &__projectDescription {
-      margin: 0;
+      box-sizing: border-box;
+      padding: $BS * 32;
       text-align: left;
       // opacity: 0;
       transition: opacity 0.3s ease-out;
       font-weight: 700;
-      width: 100%;
-      max-width: 100%;
+      width: 70%;
       transition: color 0.3s ease-out;
 
       @include bsFontSize($BS, 24);
       p {
+        margin: 0;
+      }
+
+      h5,
+      h6 {
         margin: 0;
       }
     }
@@ -121,25 +144,34 @@
       position: relative;
       width: 100%;
       overflow: auto;
-      padding: $BS * 64 $BS * 384;
+      padding: $BS * 64 0;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
+    &__projectImageWrapper {
+      // margin-bottom: $BS * 16;
+      width: 40%;
+      mix-blend-mode: luminosity;
+    }
     &__projectImage {
       width: 100%;
       pointer-events: none;
       z-index: 99;
     }
     &__projectTitle {
+      // position: absolute;
+      top: 0;
+      left: 50%;
       @include bsFontSize($BS, 44);
-      line-height: 110%;
-      // transform: perspective($BS * 500) translateZ($BS * -200);
+      line-height: 100%;
       margin: 0 0 $BS * 16;
       transform-origin: center right;
       transition: color 0.3s ease-out;
       text-transform: uppercase;
+      text-shadow: transparentize($Black, 0.4) $BS * 2 $BS * 2 $BS * 4,
+        transparentize($White, 0.8) $BS * -2 $BS * -2 $BS * 4;
+      // transform: translateX(-50%) translateY(-120%);
     }
     &__tags {
       display: flex;
@@ -152,6 +184,7 @@
       padding: 0;
       margin-right: $BS * 16;
       white-space: nowrap;
+      transition: color 0.3s ease-out;
       &:last-child {
         margin-right: 0;
       }
@@ -162,10 +195,8 @@
     &__wrapper {
       box-sizing: border-box;
       width: 100%;
+      max-width: 1px * $ScreendesignWidthMAX;
       padding: 0;
-    }
-    &__projectImageWrapper {
-      margin-bottom: $BS * 16;
     }
   }
 }
@@ -183,7 +214,7 @@
   $BS: getBaseSize("M");
   .portfolio {
     &__contentWrapper {
-      padding: $BS * 64 $BS * 200;
+      padding: $BS * 64 0;
     }
   }
 }
@@ -192,24 +223,58 @@
   $BS: getBaseSize("S");
   .portfolio {
     &__contentWrapper {
-      padding: $BS * 64;
+      padding: $BS * 128 $BS * 16;
+    }
+
+    &__title {
+      margin-bottom: $BS * 64;
+      text-shadow: transparentize($Black, 0.4) $BS * 2 $BS * 2 $BS * 4,
+        transparentize($White, 0.8) $BS * -2 $BS * -2 $BS * 4;
     }
 
     &__project {
       // width: 100%;
       transform: none;
-
-      &--work {
-        background-color: transparentize($VioletDarkest, 0.5);
-      }
-
-      &--fun {
-        background-color: transparentize($YellowDarkest, 0.5);
+      margin: $BS * 64 auto;
+      &:first-child {
+        margin-top: 0;
       }
 
       &:hover {
         transform: none;
       }
+
+      &:nth-child(even) {
+        flex-direction: column;
+
+        .portfolio {
+          &__projectContent {
+            flex-direction: column;
+          }
+
+          &__projectDescription {
+            text-align: left;
+          }
+
+          &__tags {
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+
+    &__projectContent {
+      flex-direction: column;
+    }
+
+    &__projectImageWrapper {
+      mix-blend-mode: normal;
+    }
+
+    &__projectImageWrapper,
+    &__projectDescription {
+      text-align: left;
+      width: 100%;
     }
   }
 }

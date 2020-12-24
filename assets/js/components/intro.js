@@ -30,12 +30,18 @@ class Intro {
   }
 
   addEventListeners = () => {
-    this.section.addEventListener("mousemove", this.onMouseMove);
-    this.section.addEventListener("touchmove", (e) => {
-      e.clientX = e.touches[0].clientX;
-      e.clientY = e.touches[0].clientY;
-      this.onMouseMove(e);
+    this.section.addEventListener("mousemove", this.onMouseMove, {
+      passive: true,
     });
+    this.section.addEventListener(
+      "touchmove",
+      (e) => {
+        e.clientX = e.touches[0].clientX;
+        e.clientY = e.touches[0].clientY;
+        this.onMouseMove(e);
+      },
+      { passive: true }
+    );
     this.fullscreenTrigger.addEventListener("click", this.onFullscreenClick);
   };
 
@@ -91,6 +97,7 @@ class Intro {
         </div>{" "}
         <div className="intro__list">
           <button
+            aria-label="navigate to contact"
             onClick={(e) => {
               this.controller.setRoute("contact");
             }}
@@ -99,12 +106,14 @@ class Intro {
             Kontakt{" "}
           </button>{" "}
           <button
+            aria-label="navigate to tour"
             onClick={(e) => this.controller.setRoute("tour/1")}
             className="intro__button button button--third desktop_only"
           >
             Tour{" "}
           </button>{" "}
           <button
+            aria-label="navigate to portfolio"
             onClick={(e) => this.controller.setRoute("portfolio")}
             className="intro__button button"
           >

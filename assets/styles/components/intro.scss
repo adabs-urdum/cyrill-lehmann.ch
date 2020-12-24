@@ -50,8 +50,8 @@
       @include bsFontSize($BS, 220);
       line-height: 80%;
       pointer-events: none;
-      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 3 $BS * 0.5,
-        rgba(0, 0, 0, 0.2) 0 $BS * -3 $BS * 0.5;
+      text-shadow: transparentize($Black, 0.2) $BS * 2 $BS * 2 $BS * 4,
+        transparentize($White, 0.6) $BS * -2 $BS * -2 $BS * 4;
       z-index: 2;
     }
     &__list {
@@ -203,8 +203,8 @@
     &__title {
       @include bsFontSize($BS, 155);
       line-height: 80%;
-      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 2 0,
-        rgba(0, 0, 0, 0.2) 0 $BS * -2 0;
+      text-shadow: transparentize($Black, 0.2) $BS * 2 $BS * 2 $BS * 4,
+        transparentize($White, 0.6) $BS * -2 $BS * -2 $BS * 4;
     }
     &__row {
       &:nth-child(2) {
@@ -233,8 +233,8 @@
     &__title {
       @include bsFontSize($BS, 110);
       line-height: 80%;
-      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 2 0,
-        rgba(0, 0, 0, 0.2) 0 $BS * -2 0;
+      text-shadow: $BlueDarkest $BS * 2 $BS * 2 $BS * 7,
+        $Blue $BS * -2 $BS * -2 $BS * 7;
     }
     &__row {
       &:nth-child(2) {
@@ -264,8 +264,8 @@
     &__title {
       @include bsFontSize($BS, 82);
       line-height: 85%;
-      text-shadow: rgba(255, 255, 255, 0.2) 0 $BS * 2 0,
-        rgba(0, 0, 0, 0.2) 0 $BS * -2 0;
+      text-shadow: $BlueDarkest $BS * 2 $BS * 2 $BS * 3,
+        $Blue $BS * -2 $BS * -2 $BS * 3;
     }
     &__row {
       &:nth-child(2) {
@@ -284,6 +284,9 @@
           }
         }
       }
+    }
+    &__list {
+      padding: $BS * 32 $BS * 16;
     }
   }
 }

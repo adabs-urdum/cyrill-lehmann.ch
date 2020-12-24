@@ -19,11 +19,14 @@ class Tour extends Overlay {
   }
 
   addEventListeners = () => {
-    this.tour.addEventListener("scroll", this.onWindowScroll);
+    this.tour.addEventListener("scroll", this.onWindowScroll, {
+      passive: true,
+    });
     window.addEventListener("resize", this.onWindowResize);
   };
 
   onWindowResize = () => {
+    console.log("onWindowResize");
     this.tourHeight = window.innerHeight * this.tour.children.length;
   };
 
@@ -43,7 +46,9 @@ class Tour extends Overlay {
   };
 
   beforeClose = () => {
-    this.tour.removeEventListener("scroll", this.onWindowScroll);
+    this.tour.removeEventListener("scroll", this.onWindowScroll, {
+      passive: true,
+    });
     const introWrapper = this.introSection.querySelector(".intro__wrapper");
     this.introSection.insertBefore(this.headElement, introWrapper);
   };
@@ -64,6 +69,7 @@ class Tour extends Overlay {
       <Fragment>
         <div className="controls__close controls__close--tour">
           <button
+            aria-label="navigate to home"
             className="controls__icon controls__icon--close button"
             onClick={(e) => {
               this.closePanel(this.section);
@@ -113,7 +119,7 @@ class Tour extends Overlay {
               Kontrolle und Freiheit zu haben.
               <br />
               <strong>
-                Ich arbeite grundsätzlich nicht mit fertigen Themes.
+                Ich arbeite grundsätzlich nicht mit eingekauften Themes.
               </strong>{" "}
             </p>{" "}
             <p className="trivia">
@@ -280,6 +286,7 @@ class Tour extends Overlay {
             </p>{" "}
             <div className="tour__buttonWrapper">
               <button
+                aria-label="navigate to contact"
                 className="button button--secondary"
                 onClick={() => {
                   _this.beforeClose();
@@ -289,6 +296,7 @@ class Tour extends Overlay {
                 Überzeugt{" "}
               </button>{" "}
               <button
+                aria-label="navigate to portfolio"
                 className="button"
                 onClick={() => {
                   _this.beforeClose();
@@ -345,14 +353,16 @@ class Tour extends Overlay {
       readyPosX = true;
     }
 
+    const maxHeadHeight = this.head.headObj.getBoundingInfo().boundingBox
+      .maximum.y;
     if (
       Math.abs(this.head.headObj.position.y) -
-        Math.abs(this.head.upperLimit / 2 - 130) >
+        Math.abs(this.head.upperLimit / 2 - maxHeadHeight) >
       2
     ) {
       this.head.headObj.position.y -= this.head.upperLimit / 90;
     } else {
-      this.head.headObj.position.y = this.head.upperLimit / 2 - 130;
+      this.head.headObj.position.y = this.head.upperLimit / 2 - maxHeadHeight;
 
       readyPosY = true;
     }

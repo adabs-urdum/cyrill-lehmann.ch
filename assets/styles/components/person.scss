@@ -6,7 +6,7 @@
   .person {
     position: relative;
     box-sizing: border-box;
-    padding: $BS * 64;
+    // padding: $BS * 64;
     color: $BlueDarkest;
     overflow-x: hidden;
 
@@ -41,6 +41,7 @@
     &__hashtags {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-end;
       // text-transform: uppercase;
       // font-family: $FontFamilyTitle;
       @include bsFontSize($BS, 32);
@@ -51,6 +52,7 @@
       margin-bottom: $BS * 32;
 
       li {
+        color: $BlueDarkest;
         padding-left: $BS * 28;
 
         &:first-child {
@@ -67,17 +69,20 @@
       width: 100%;
       height: auto;
       min-height: 100%;
-      padding: $BS * 64 $BS * 64 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow: auto;
+      box-shadow: $Blue $BS * 0 $BS * 0 $BS * 6,
+        $BlueDarkest $BS * 0 $BS * 0 $BS * 6;
       h1 {
         span {
           @include bsFontSize($BS, 60);
         }
       }
-      h2 {
+      h2,
+      h3 {
         line-height: 100%;
         margin-bottom: $BS * 20;
         & + p {
@@ -92,21 +97,21 @@
         background: transparent;
         border-radius: 50%;
         z-index: -1;
-        box-shadow: $BlueDarkest 0 0 $BS * 30;
         transform: translate(-50%, 50%);
-        border: solid $Blue $BS * 3;
-        // background-image: linear-gradient(
-        //     90deg,
-        //     transparentize($YellowDarkest, 0.5),
-        //     transparent,
-        //     transparentize($YellowDarkest, 0.5)
-        //   ),
-        //   radial-gradient(circle at center, $Yellow, $YellowDarkest 100vmax);
-        background-image: radial-gradient(
-          ellipse at center,
-          $Blue,
-          transparentize($BlueDarkest, 0.05)
-        );
+        // border: solid $Blue $BS * 3;
+        background-image: linear-gradient(
+            90deg,
+            transparentize($BlueDarkest, 0.5),
+            transparent,
+            transparentize($BlueDarkest, 0.5)
+          ),
+          radial-gradient(circle at center, $Blue, $BlueDarkest 100vmax);
+        // background-image: radial-gradient(
+        //   ellipse at center,
+        //   $Blue,
+        //   transparentize($BlueDarkest, 0.05)
+        // );
+        // background: $BlueDark;
 
         // left: 0;
         // top: 0;
@@ -125,7 +130,7 @@
     &__buttonWrapper {
       display: flex;
       flex-wrap: wrap;
-      margin: 0 $BS * -64;
+      // margin: 0 $BS * -64;
       .button {
         // padding: $BS * 50 $BS * 17;
         // background-color: transparent;
@@ -147,15 +152,19 @@
       }
     }
     &__helloContainer {
-      margin-top: $BS * 16;
       display: flex;
+      flex-direction: column;
       align-content: center;
+      margin-top: $BS * 20;
       label {
         flex: 1;
         position: relative;
-        margin: 0 $BS * 16;
         @include bsFontSize($BS, 8);
         line-height: 100%;
+        &[for="yourEmail"] {
+          margin-top: $BS * 40;
+          margin-bottom: $BS * 24;
+        }
         span {
           position: absolute;
           top: 0;
@@ -170,6 +179,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        box-sizing: border-box;
       }
       p {
         margin: 0;
@@ -177,10 +187,9 @@
       input {
         box-sizing: border-box;
         height: calc(100% - #{$BS} * 6);
-        width: 100%;
-        min-width: $BS * 256;
+        min-width: $BS * 512;
         border: none;
-        padding: $BS * 4 $BS * 16;
+        padding: $BS * 16;
         appearance: none;
         outline: solid $BS * 3 $Blue;
         transition: outline 0.3s ease-out, background-color 0.3s ease-out;
@@ -201,32 +210,49 @@
           outline: solid $BS * 3 $Violet;
         }
       }
-      .button {
-        margin-bottom: 0;
-        border: solid $BS * 3 $Blue;
-        background-color: $Blue;
-        color: $BlueDarkest;
-        &:hover {
-          color: $Blue;
-        }
+    }
+    .button {
+      margin-bottom: 0;
+      margin-left: 0;
+      border: solid $BS * 3 $Blue;
+      background-color: $Blue;
+      color: $BlueDarkest;
+      &:hover {
+        color: $Blue;
       }
     }
     &__helloWrapper {
+      box-sizing: border-box;
       position: relative;
       display: flex;
       flex-direction: column;
       align-content: center;
       justify-content: center;
-      margin: $BS * 32 $BS * -62 0;
-      padding: $BS * 48 $BS * 64 $BS * 64;
+      padding: $BS * 64;
       background-color: transparentize($BlueDarkest, 0.5);
       color: $Blue;
+      width: 50%;
     }
     &__upperWrapper {
+      position: relative;
+      display: flex;
+      // justify-content: center;
+      height: 100%;
+      flex-grow: 1;
+    }
+
+    &__infoWrapper {
+      width: 50%;
+      padding: $BS * 64;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      flex-grow: 1;
+      box-sizing: border-box;
+      text-align: right;
+    }
+
+    &__contactButtonWrapper {
+      margin-bottom: $BS * 64;
     }
   }
 }
@@ -243,18 +269,17 @@
 @include breakPointM() {
   $BS: getBaseSize("M");
   .person {
-    display: block;
     padding: 0;
-    &__wrapper {
-      padding: $BS * 128;
-    }
     &__helloWrapper {
+      width: 100%;
+      padding: $BS * 128;
+      background-color: $BlueDarkest;
       h2 {
         margin-bottom: $BS * 32;
       }
     }
     &__helloContainer {
-      flex-wrap: wrap;
+      justify-content: flex-start;
       margin-top: $BS * 0;
       div {
         &:first-child {
@@ -263,7 +288,6 @@
         }
       }
       .button {
-        width: 100%;
         text-align: center;
         margin-left: 0;
         margin-top: $BS * 32;
@@ -284,6 +308,26 @@
       }
     }
 
+    &__infoWrapper {
+      display: block;
+      width: 100%;
+      padding: $BS * 128;
+      text-align: left;
+    }
+
+    &__helloWrapper {
+      display: block;
+    }
+
+    &__hashtags {
+      justify-content: flex-start;
+    }
+
+    &__upperWrapper {
+      display: block;
+      height: auto;
+    }
+
     &:after {
       // width: 100%;
       // height: 100%;
@@ -294,11 +338,20 @@
 @include breakPointS() {
   $BS: getBaseSize("S");
   .person {
+    &__wrapper {
+      padding-bottom: 0;
+    }
+    &__helloWrapper {
+      // margin-left: $BS * -92;
+      // margin-right: $BS * -92;
+      // padding-left: $BS * 92;
+      // padding-right: $BS * 92;
+    }
     &__helloContainer {
       flex-direction: column;
-      align-items: center;
-      & > div {
-        display: none;
+
+      .button {
+        width: auto;
       }
     }
     &__buttonWrapper {
@@ -310,8 +363,7 @@
       width: 100%;
     }
     .button {
-      display: block;
-      width: calc(50% - #{$BS} * 10.8);
+      display: inline-block;
       &:nth-child(even) {
         margin-right: 0;
       }

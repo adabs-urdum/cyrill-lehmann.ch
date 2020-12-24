@@ -141,8 +141,10 @@
       box-shadow 0.3s ease-out;
     line-height: 100%;
     // transform: skew(-5deg);
-    box-shadow: transparentize($Blue, 0.5) 0 0 $BS * 8;
-    text-shadow: transparentize($Blue, 0.5) 0 0 $BS * 4;
+    box-shadow: transparentize($Blue, 0.5) $BS * -2 $BS * -2 $BS * 8,
+      transparentize($BlueDarkest, 0.5) $BS * 2 $BS * 2 $BS * 8;
+    text-shadow: transparentize($Blue, 0.5) $BS * -1 $BS * -1 $BS * 2,
+      transparentize($BlueDarkest, 0.5) $BS * 1 $BS * 1 $BS * 2;
     cursor: pointer;
     &:disabled {
       cursor: wait;

@@ -202,8 +202,8 @@
   $BS: getBaseSize("S");
   .controls {
     &__close {
-      top: $BS * 32;
-      left: $BS * 32;
+      top: $BS * 16;
+      left: $BS * 16;
     }
   }
 }
@@ -212,8 +212,8 @@
   $BS: getBaseSize("XS");
   .controls {
     &__close {
-      top: $BS * 32;
-      left: $BS * 32;
+      top: $BS * 16;
+      left: $BS * 16;
     }
   }
 }

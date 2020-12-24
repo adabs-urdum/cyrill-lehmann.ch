@@ -15,6 +15,7 @@
       radial-gradient(circle at center, $Green 0, $GreenDarkest 100vmax);
     scroll-snap-type: y mandatory;
     color: $GreenDarkest;
+
     &__stage {
       position: relative;
       box-sizing: border-box;

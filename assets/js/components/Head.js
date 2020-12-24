@@ -21,7 +21,7 @@ class Head {
 
     this.camera = new BABYLON.UniversalCamera(
       "camera",
-      new BABYLON.Vector3(0, 90, 520),
+      new BABYLON.Vector3(0, 90, 530),
       this.scene
     );
     this.setCameraPosition();
@@ -57,7 +57,7 @@ class Head {
       this.camera.position.z = 1000 - (windowWidth - 1980) / 50;
     } else if (windowWidth > 1440) {
       // console.log("1440");
-      this.camera.position.z = 750 - (windowWidth - 1440) / 50;
+      this.camera.position.z = 880 - (windowWidth - 1440) / 50;
     } else if (windowWidth > 1024) {
       // console.log("1024");
       this.camera.position.z = 700 + (windowWidth - 1024);

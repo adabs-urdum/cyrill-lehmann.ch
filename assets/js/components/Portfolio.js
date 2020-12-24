@@ -32,6 +32,7 @@ class Portfolio extends Overlay {
 
   render = () => {
     const projectsJsx = this.projects.map((project, projectKey) => {
+      console.log(project);
       const tags = project.tags.map((tag, key) => {
         return (
           <li key={key} className="portfolio__tag">
@@ -49,19 +50,27 @@ class Portfolio extends Overlay {
           target="_blank"
           rel="noopener"
         >
-          <h2 className="portfolio__projectTitle"> {project.name} </h2>{" "}
-          <div className="portfolio__projectImageWrapper">
-            <img
-              className="portfolio__projectImage"
-              src={project.imageSrc}
-              srcSet={project.imageSrcset}
-              sizes="(max-width: 500px) 80vw, 30vw"
-            />
-          </div>{" "}
-          <div className="portfolio__projectDescription">
-            <p> {project.client} </p> <p> {project.description} </p>{" "}
-            <ul className="portfolio__tags"> {tags} </ul>{" "}
-          </div>{" "}
+          <div className="portfolio__projectContent">
+            <div className="portfolio__projectImageWrapper">
+              <img
+                className="portfolio__projectImage"
+                alt={project.client}
+                src={project.imageSrc}
+                srcSet={project.imageSrcset}
+                loading="lazy"
+                sizes="(max-width: 500px) 80vw, 30vw"
+              />
+            </div>{" "}
+            <div className="portfolio__projectDescription">
+              <h2 className="portfolio__projectTitle"> {project.name} </h2>
+              <p className="portfolio__projectClient">
+                {" "}
+                {project.client}{" "}
+              </p>{" "}
+              <p> {project.description} </p>{" "}
+              <ul className="portfolio__tags"> {tags} </ul>{" "}
+            </div>{" "}
+          </div>
         </a>
       );
     });
@@ -73,6 +82,7 @@ class Portfolio extends Overlay {
             onClick={(e) => {
               this.closePanel(this.section);
             }}
+            aria-label="navigate to home"
           >
             &times;{" "}
           </button>{" "}
@@ -80,13 +90,16 @@ class Portfolio extends Overlay {
         <section className="portfolio overlay__content">
           <div className="portfolio__contentWrapper">
             <h1 className="portfolio__title">
-              {this.loader.projects.length ? "Arbeiten und Basteleien" : null}{" "}
+              {this.loader.projects.length
+                ? "Auftragsarbeiten und Basteleien"
+                : null}{" "}
             </h1>{" "}
             <div className="portfolio__wrapper">
               <div className="portfolio__projects">{projectsJsx}</div>{" "}
             </div>{" "}
             {this.loader.projects.length ? (
               <button
+                aria-label="navigate to contact"
                 className="button button--fourth"
                 onClick={(e) => {
                   this.controller.setRoute("contact");

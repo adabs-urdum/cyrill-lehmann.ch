@@ -48,9 +48,9 @@ class Person extends Overlay {
         .get(`${fetchUrl}/sendhello/?username=${nameVal}&mail=${mailVal}`)
         .then((response) => {
           if (response.data.mailSuccess) {
-            this.helloWrapper.innerHTML = `<h3>Ciao ${nameVal}! Ich melde mich sicher noch per E-Mail.</h3>`;
+            this.helloContainer.innerHTML = `<p>Ciao ${nameVal}! Ich melde mich sicher noch per E-Mail.</p>`;
           } else {
-            this.helloWrapper.innerHTML = `<h3>Ciao ${nameVal}! Leider hat der Versand technisch nicht funktioniert.</h3>`;
+            this.helloContainer.innerHTML = `<p>Ciao ${nameVal}! Leider hat der Versand technisch nicht funktioniert.</p>`;
           }
         });
     }
@@ -61,6 +61,7 @@ class Person extends Overlay {
       <Fragment>
         <div className="controls__close controls__close--person">
           <button
+            aria-label="navigate to home"
             className="controls__icon controls__icon--close button"
             onClick={(e) => {
               this.closePanel(this.section);
@@ -72,65 +73,70 @@ class Person extends Overlay {
         <section className="person overlay__content">
           <div className="person__wrapper">
             <div className="person__upperWrapper">
-              <h2>Eckdaten</h2>
-              <ul className="person__hashtags">
-                <li>Cyrill Lehmann</li>
-                <li>Web Entwickler</li>
-                <li>Chur</li>
-                <li>Schweiz</li>
-              </ul>
-              <h2>Mundwerk</h2>
-              <ul className="person__hashtags">
-                <li>Deutsch</li>
-                <li>Englisch</li>
-                <li>Mandarin</li>
-              </ul>
-              <h2>Freizeit</h2>
-              <ul className="person__hashtags">
-                <li>Code</li>
-                <li>Ski</li>
-                <li>Pilzzucht</li>
-              </ul>
-              <h2>Täglich Brot</h2>
-              <ul className="person__hashtags">
-                <li>JavaScript</li>
-                <li>SCSS</li>
-                <li>HTML</li>
-                <li>PHP</li>
-                <li>Wordpress</li>
-                <li>React</li>
-              </ul>
-            </div>
-            <div>
+              <div className="person__infoWrapper">
+                <h2>Cyrill Lehmann</h2>
+                <ul className="person__hashtags">
+                  <li>Web Entwickler</li>
+                  <li>Chur</li>
+                  <li>Schweiz</li>
+                </ul>
+                <h3>Mundwerk</h3>
+                <ul className="person__hashtags">
+                  <li>Deutsch</li>
+                  <li>Englisch</li>
+                  <li>Mandarin</li>
+                </ul>
+                <h3>Handwerk</h3>
+                <ul className="person__hashtags">
+                  <li>Javascript</li>
+                  <li>CSS</li>
+                  <li>PHP</li>
+                </ul>
+                <h3>Beiwerk</h3>
+                <ul className="person__hashtags">
+                  <li>Ski</li>
+                  <li>Pilzzucht</li>
+                  <li>Chilizucht</li>
+                </ul>
+              </div>
               <div className="person__helloWrapper">
-                <h3>Einfach mal «Hallo» sagen</h3>
+                <h3>Kontakt</h3>
+                <div className="person__contactButtonWrapper">
+                  <a
+                    className="button button--secondary"
+                    href="mailto:cyrill@adabs.ch"
+                  >
+                    cyrill@adabs.ch
+                  </a>
+                </div>
+                <h3>«Hallo» sagen</h3>
                 <div className="person__helloContainer">
                   <label htmlFor="yourName">
                     <span>dein Name</span>
-                    <input id="yourName" type="text" autoComplete="name" />
+                    <div>
+                      <input id="yourName" type="text" autoComplete="name" />
+                    </div>
                   </label>
-                  <div>
-                    <p>@</p>
-                  </div>
                   <label htmlFor="yourEmail">
                     <span>deine E-Mail Adresse</span>
-                    <input id="yourEmail" type="email" autoComplete="email" />
+                    <div>
+                      <input id="yourEmail" type="email" autoComplete="email" />
+                    </div>
                   </label>
-                  <button
-                    className="button button--third button--hello"
-                    onClick={this.onSayHello}
-                  >
-                    Hallo
-                  </button>
+                  <div>
+                    <button
+                      aria-label="submit form"
+                      className="button button--secondary"
+                      onClick={this.onSayHello}
+                    >
+                      Hallo
+                    </button>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div>
               <div className="person__buttonWrapper">
-                <a
-                  className="button button--secondary"
-                  href="mailto:cyrill@adabs.ch"
-                >
-                  E-Mail
-                </a>
                 <a
                   className="button button--secondary"
                   href="https://github.com/adabs-urdum/"
@@ -189,6 +195,9 @@ class Person extends Overlay {
       this.section.style.display = "flex";
       this.section.classList.add("open");
       this.helloWrapper = this.section.querySelector(".person__helloWrapper");
+      this.helloContainer = this.section.querySelector(
+        ".person__helloContainer"
+      );
     });
   };
 }
