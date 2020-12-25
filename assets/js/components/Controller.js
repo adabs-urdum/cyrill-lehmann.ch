@@ -8,6 +8,7 @@ class Controller {
 
     this.head = init.head;
     this.loader = init.loader;
+    this.gace = init.gace;
 
     this.addEventListeners();
     this.onUrlChange();
@@ -37,15 +38,19 @@ class Controller {
     const path = window.location.pathname.split("/");
     switch (path[1]) {
       case "contact":
+        // "Kategorie", "Aktion", "Label", value
+        this.gace.triggerEvent("controller", "navigation", "route", "contact");
         const contact = new Person({
           loader: this.loader,
           head: this.head,
+          gace: this.gace,
         });
         contact.evenBeforeClose = () => {
           this.setRoute("");
         };
         break;
       case "tour":
+        this.gace.triggerEvent("controller", "navigation", "route", "tour");
         const introSection = document.querySelector("#intro");
         const headElement = document.querySelector(".head");
         const tour = new Tour({
@@ -54,16 +59,24 @@ class Controller {
           head: this.head,
           headElement: headElement,
           introSection: introSection,
+          gace: this.gace,
         });
         tour.evenBeforeClose = () => {
           this.setRoute("");
         };
         break;
       case "portfolio":
+        this.gace.triggerEvent(
+          "controller",
+          "navigation",
+          "route",
+          "portfolio"
+        );
         const portfolio = new Portfolio({
           controller: this,
           loader: this.loader,
           head: this.head,
+          gace: this.gace,
         });
         portfolio.evenBeforeClose = () => {
           this.setRoute("");

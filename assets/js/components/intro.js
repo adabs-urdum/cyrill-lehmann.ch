@@ -14,6 +14,31 @@ class Intro {
     this.head = init.head;
     this.currentStage = null;
     this.loader = init.loader;
+    this.shittyBrowserTrigger = document.querySelector(
+      '[for="showShittyBrowserInfo"]'
+    );
+    this.shittyBrowserText = document.querySelector(
+      ".controls__shittyBrowserText"
+    );
+
+    const uA = navigator.userAgent;
+    const vendor = navigator.vendor;
+    if (
+      /Safari/i.test(uA) &&
+      /Apple Computer/.test(vendor) &&
+      !/Mobi|Android/i.test(uA)
+    ) {
+      //Desktop Safari
+      this.isSafariDesktop = true;
+    } else {
+      this.isSafariDesktop = false;
+    }
+
+    if (this.isSafariDesktop) {
+      this.shittyBrowserText.textContent =
+        "Der mix-blend-mode wird von Safari leider nicht komplett unterstützt. Nutze Google Chrome für die angedachte Experience.";
+      this.head.camera.position.z = 1700;
+    }
 
     this.isFullscreen = false;
     this.fullscreenTrigger = document.querySelector("#fullscreenTrigger");
@@ -63,14 +88,33 @@ class Intro {
         y: Math.round((200 / window.innerHeight) * e.clientY - 100) / 100,
       };
 
-      if (this.head.ready) {
-        this.head.headObj.rotation.x = this.mousePosRel.y * 0.7;
-        this.head.headObj.rotation.y = this.mousePosRel.x * -1.1;
-        this.head.headObj.rotation.z = this.mousePosRel.x * 0.3;
+      if (this.isSafariDesktop) {
+        const boundingBox = this.head.headObj.getBoundingInfo().boundingBox;
+        // boundingBox.maximum.y;
+        this.mousePosRel = {
+          x: Math.round(e.clientX + boundingBox.maximum.x) / 1000,
+          y: Math.round(e.clientY + boundingBox.maximum.y) / 1000,
+        };
 
-        this.head.headObj.position.x =
-          this.mousePosRel.x * this.head.leftLimit * 0.35;
-        this.head.headObj.position.y = this.mousePosRel.y * 40 + 20;
+        if (this.head.ready) {
+          this.head.headObj.rotation.x = this.mousePosRel.y * 0.8;
+          this.head.headObj.rotation.y = this.mousePosRel.x * -1.1;
+          this.head.headObj.rotation.z = this.mousePosRel.x * 0;
+
+          this.head.headObj.position.x =
+            this.mousePosRel.x * this.head.leftLimit * 0.35;
+          this.head.headObj.position.y = this.mousePosRel.y * 40 + 20;
+        }
+      } else {
+        if (this.head.ready) {
+          this.head.headObj.rotation.x = this.mousePosRel.y * 0.7;
+          this.head.headObj.rotation.y = this.mousePosRel.x * -1.1;
+          this.head.headObj.rotation.z = this.mousePosRel.x * 0.3;
+
+          this.head.headObj.position.x =
+            this.mousePosRel.x * this.head.leftLimit * 0.35;
+          this.head.headObj.position.y = this.mousePosRel.y * 40 + 20;
+        }
       }
     }
 

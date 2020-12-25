@@ -34,24 +34,6 @@
       background: $Blue;
       transition: width 0.25s ease-out;
     }
-    // &.portfolioLoader {
-    //   background-image: linear-gradient(
-    //       90deg,
-    //       transparentize($VioletDarkest, 0.5),
-    //       transparent,
-    //       transparentize($VioletDarkest, 0.5)
-    //     ),
-    //     radial-gradient(circle at center, $Violet 0, $VioletDarkest 100vmax);
-    //   .loader {
-    //     &__bar {
-    //       background: $Violet;
-    //     }
-    //     &__wrapper {
-    //       background: $VioletDarkest;
-    //       box-shadow: $VioletDarkest 0 0 $BS * 50;
-    //     }
-    //   }
-    // }
     &.hiding {
       opacity: 0;
     }

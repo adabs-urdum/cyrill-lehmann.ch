@@ -7,6 +7,7 @@ class Head {
     console.log("new Head");
 
     this.ready = false;
+    this.isSafariDesktop = false;
 
     this.loader = init.loader;
 
@@ -21,7 +22,7 @@ class Head {
 
     this.camera = new BABYLON.UniversalCamera(
       "camera",
-      new BABYLON.Vector3(0, 90, 530),
+      new BABYLON.Vector3(0, 60, 530),
       this.scene
     );
     this.setCameraPosition();
@@ -42,8 +43,10 @@ class Head {
   }
 
   addEventListeners = () => {
-    window.addEventListener("resize", this.resizeEngine);
-    window.addEventListener("resize", this.setCameraPosition);
+    if (!this.isSafariDesktop) {
+      window.addEventListener("resize", this.resizeEngine);
+      window.addEventListener("resize", this.setCameraPosition);
+    }
   };
 
   setCameraPosition = () => {
@@ -90,6 +93,17 @@ class Head {
   onLoaderReady = () => {
     const _this = this;
 
+    const uA = navigator.userAgent;
+    const vendor = navigator.vendor;
+    if (
+      /Safari/i.test(uA) &&
+      /Apple Computer/.test(vendor) &&
+      !/Mobi|Android/i.test(uA)
+    ) {
+      //Desktop Safari
+      this.isSafariDesktop = true;
+    }
+
     this.assetsManager = new BABYLON.AssetsManager(this.scene);
     this.assetsManager.useDefaultLoadingScreen = false;
 
@@ -108,11 +122,9 @@ class Head {
       _this.headObj.material.diffuseTexture.hasAlpha = true;
       _this.headObj.material.backFaceCulling = false;
       _this.headObj.rotation.y = -1;
-      // _this.headObj.position.y = 100;
       _this.scene.registerBeforeRender(_this.rotateHead);
 
       _this.headObj.material.alpha = 0;
-      _this.scene.registerBeforeRender(_this.fadeIn);
     };
     meshTask.onError = function (task, message, exception) {
       console.log("error");
@@ -157,6 +169,8 @@ class Head {
   };
 
   startRenderLoop = (left, upper) => {
+    let oldLeft = 0;
+    let oldTop = 0;
     this.engine.runRenderLoop(() => {
       if (this.scene.isActiveMesh(upper)) {
         upper.position.y += 5;
@@ -166,6 +180,29 @@ class Head {
       if (this.scene.isActiveMesh(left)) {
         left.position.x += 5;
         this.leftLimit = left.position.x;
+      }
+
+      if (this.oldTop && this.upperLimit && this.oldLeft && this.leftLimit) {
+        if (
+          this.oldTop === this.upperLimit &&
+          this.oldLeft === this.leftLimit
+        ) {
+          this.scene.registerBeforeRender(this.fadeIn);
+        }
+      }
+
+      if (this.isSafariDesktop) {
+        const boundingBox = this.headObj.getBoundingInfo().boundingBox;
+        this.headObj.position.y = this.upperLimit - boundingBox.maximum.y * 1.3;
+        this.headObj.position.x = this.leftLimit - boundingBox.maximum.x * 2;
+      }
+
+      if (this.scene.isActiveMesh(left)) {
+        this.oldLeft = left.position.x;
+      }
+
+      if (this.scene.isActiveMesh(upper)) {
+        this.oldTop = upper.position.y;
       }
 
       this.scene.render();
@@ -181,7 +218,7 @@ class Head {
   };
 
   rotateHead = () => {
-    const movement = Math.sin(this.headStep) / 3 + 0.5;
+    const movement = Math.sin(this.headStep) / 3 + 0.4;
     this.headStep += this.headSpeed;
     this.headObj.rotation.y = Math.PI / 3.5 - (Math.PI / 2) * movement;
   };

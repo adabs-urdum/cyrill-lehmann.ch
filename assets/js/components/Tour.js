@@ -15,6 +15,19 @@ class Tour extends Overlay {
     this.introSection = init.introSection;
     this.section = document.querySelector(".overlay");
 
+    const uA = navigator.userAgent;
+    const vendor = navigator.vendor;
+    if (
+      /Safari/i.test(uA) &&
+      /Apple Computer/.test(vendor) &&
+      !/Mobi|Android/i.test(uA)
+    ) {
+      //Desktop Safari
+      this.isSafariDesktop = true;
+    } else {
+      this.isSafariDesktop = false;
+    }
+
     this.render();
   }
 
@@ -323,7 +336,9 @@ class Tour extends Overlay {
       if (this.head.headObj) {
         this.head.headObj.position.z = 0;
 
-        this.head.scene.registerBeforeRender(this.moveHead);
+        if (!this.isSafariDesktop) {
+          this.head.scene.registerBeforeRender(this.moveHead);
+        }
       }
 
       this.tour = this.section.querySelector(".tour");

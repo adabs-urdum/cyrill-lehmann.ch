@@ -38,7 +38,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      transform: translateY(-5%);
+      transform: translateY(-8%);
+      padding: $BS * 2 0 0;
       @supports (mix-blend-mode: luminosity) {
         mix-blend-mode: luminosity;
       }
@@ -50,8 +51,6 @@
       @include bsFontSize($BS, 220);
       line-height: 80%;
       pointer-events: none;
-      text-shadow: transparentize($Black, 0.2) $BS * 2 $BS * 2 $BS * 4,
-        transparentize($White, 0.6) $BS * -2 $BS * -2 $BS * 4;
       z-index: 2;
     }
     &__list {
@@ -69,7 +68,7 @@
     }
     &__rows {
       width: 100%;
-      padding: $BS * 60 $BS * 16;
+      padding: $BS * 4 0;
     }
     &__row {
       position: relative;
@@ -89,7 +88,7 @@
             transform-origin: center top;
             @include bsFontSize($BS, 189);
             line-height: 80%;
-            color: $BlueDark;
+            color: $BlueDarkest;
           }
         }
       }
@@ -98,7 +97,7 @@
           &__title {
             @include bsFontSize($BS, 131);
             line-height: 85%;
-            color: $Blue;
+            color: $BlueDarkest;
           }
         }
       }
@@ -203,8 +202,6 @@
     &__title {
       @include bsFontSize($BS, 155);
       line-height: 80%;
-      text-shadow: transparentize($Black, 0.2) $BS * 2 $BS * 2 $BS * 4,
-        transparentize($White, 0.6) $BS * -2 $BS * -2 $BS * 4;
     }
     &__row {
       &:nth-child(2) {
@@ -233,8 +230,6 @@
     &__title {
       @include bsFontSize($BS, 110);
       line-height: 80%;
-      text-shadow: $BlueDarkest $BS * 2 $BS * 2 $BS * 7,
-        $Blue $BS * -2 $BS * -2 $BS * 7;
     }
     &__row {
       &:nth-child(2) {
@@ -261,11 +256,12 @@
   $BS: getBaseSize("S");
   .intro {
     justify-content: flex-start;
+    &__wrapper {
+      padding-top: $BS * 128;
+    }
     &__title {
       @include bsFontSize($BS, 82);
       line-height: 85%;
-      text-shadow: $BlueDarkest $BS * 2 $BS * 2 $BS * 3,
-        $Blue $BS * -2 $BS * -2 $BS * 3;
     }
     &__row {
       &:nth-child(2) {

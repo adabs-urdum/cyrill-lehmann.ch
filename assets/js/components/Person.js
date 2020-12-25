@@ -9,6 +9,7 @@ class Person extends Overlay {
     console.log("new Person");
     this.loader = init.loader;
     this.head = init.head;
+    this.gace = init.gace;
     this.head.stopRenderLoop();
     this.section = document.querySelector(".overlay");
     this.render();
@@ -24,6 +25,8 @@ class Person extends Overlay {
     const mail = this.section.querySelector("#yourEmail");
     const mailVal = mail.value.trim();
     let errors = 0;
+
+    this.gace.triggerEvent("contact", "form", nameVal, mailVal);
 
     if (mailVal.length <= 0) {
       mail.classList.add("error");
@@ -48,7 +51,7 @@ class Person extends Overlay {
         .get(`${fetchUrl}/sendhello/?username=${nameVal}&mail=${mailVal}`)
         .then((response) => {
           if (response.data.mailSuccess) {
-            this.helloContainer.innerHTML = `<p>Ciao ${nameVal}! Ich melde mich sicher noch per E-Mail.</p>`;
+            this.helloContainer.innerHTML = `<p>Ciao ${nameVal}! Vielleicht schreibe ich dir zurück.</p>`;
           } else {
             this.helloContainer.innerHTML = `<p>Ciao ${nameVal}! Leider hat der Versand technisch nicht funktioniert.</p>`;
           }
@@ -105,6 +108,14 @@ class Person extends Overlay {
                   <a
                     className="button button--secondary"
                     href="mailto:cyrill@adabs.ch"
+                    onClick={(e) => {
+                      this.gace.triggerEvent(
+                        "contact",
+                        "linkout",
+                        "contact",
+                        "cyrill@adabs.ch"
+                      );
+                    }}
                   >
                     cyrill@adabs.ch
                   </a>
@@ -142,6 +153,14 @@ class Person extends Overlay {
                   href="https://github.com/adabs-urdum/"
                   target="_blank"
                   rel="noopener"
+                  onClick={(e) => {
+                    this.gace.triggerEvent(
+                      "contact",
+                      "linkout",
+                      "social media",
+                      "GitHub"
+                    );
+                  }}
                 >
                   GitHub
                 </a>
@@ -150,6 +169,14 @@ class Person extends Overlay {
                   href="https://www.linkedin.com/in/adabs-urdum/"
                   target="_blank"
                   rel="noopener"
+                  onClick={(e) => {
+                    this.gace.triggerEvent(
+                      "contact",
+                      "linkout",
+                      "social media",
+                      "LinkedIn"
+                    );
+                  }}
                 >
                   LinkedIn
                 </a>
@@ -158,6 +185,14 @@ class Person extends Overlay {
                   href="https://codepen.io/adabs-urdum/"
                   target="_blank"
                   rel="noopener"
+                  onClick={(e) => {
+                    this.gace.triggerEvent(
+                      "contact",
+                      "linkout",
+                      "social media",
+                      "Codepen"
+                    );
+                  }}
                 >
                   Codepen
                 </a>
@@ -166,6 +201,14 @@ class Person extends Overlay {
                   href="https://cssbattle.dev/player/adabs/"
                   target="_blank"
                   rel="noopener"
+                  onClick={(e) => {
+                    this.gace.triggerEvent(
+                      "contact",
+                      "linkout",
+                      "social media",
+                      "CSS Battle"
+                    );
+                  }}
                 >
                   CSS Battle
                 </a>
@@ -174,6 +217,14 @@ class Person extends Overlay {
                   href="https://profile.codersrank.io/user/adabs-urdum/"
                   target="_blank"
                   rel="noopener"
+                  onClick={(e) => {
+                    this.gace.triggerEvent(
+                      "contact",
+                      "linkout",
+                      "social media",
+                      "CodersRank"
+                    );
+                  }}
                 >
                   CodersRank
                 </a>

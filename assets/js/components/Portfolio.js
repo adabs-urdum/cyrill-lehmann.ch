@@ -7,6 +7,7 @@ class Portfolio extends Overlay {
     super();
 
     this.controller = init.controller;
+    this.gace = init.gace;
     this.loader = init.loader;
     this.head = init.head;
     this.head.stopRenderLoop();
@@ -32,7 +33,6 @@ class Portfolio extends Overlay {
 
   render = () => {
     const projectsJsx = this.projects.map((project, projectKey) => {
-      console.log(project);
       const tags = project.tags.map((tag, key) => {
         return (
           <li key={key} className="portfolio__tag">
@@ -49,6 +49,14 @@ class Portfolio extends Overlay {
           href={project.link}
           target="_blank"
           rel="noopener"
+          onClick={(e) => {
+            this.gace.triggerEvent(
+              "portfolio",
+              "linkout",
+              "project",
+              project.name
+            );
+          }}
         >
           <div className="portfolio__projectContent">
             <div className="portfolio__projectImageWrapper">
@@ -96,18 +104,18 @@ class Portfolio extends Overlay {
             </h1>{" "}
             <div className="portfolio__wrapper">
               <div className="portfolio__projects">{projectsJsx}</div>{" "}
+              {this.loader.projects.length ? (
+                <button
+                  aria-label="navigate to contact"
+                  className="button button--fourth"
+                  onClick={(e) => {
+                    this.controller.setRoute("contact");
+                  }}
+                >
+                  Kontakt
+                </button>
+              ) : null}
             </div>{" "}
-            {this.loader.projects.length ? (
-              <button
-                aria-label="navigate to contact"
-                className="button button--fourth"
-                onClick={(e) => {
-                  this.controller.setRoute("contact");
-                }}
-              >
-                Kontakt
-              </button>
-            ) : null}
           </div>
         </section>{" "}
       </Fragment>
