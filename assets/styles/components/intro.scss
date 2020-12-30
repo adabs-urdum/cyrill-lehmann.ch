@@ -286,3 +286,29 @@
     }
   }
 }
+
+@include breakPointXS() {
+  $BS: getBaseSize("XS");
+  .intro {
+    &__row {
+      color: $Blue;
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        .intro__title {
+          color: $Blue;
+        }
+      }
+    }
+    &__list {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    &__button,
+    .button {
+      margin-bottom: $BS * 16;
+    }
+  }
+}

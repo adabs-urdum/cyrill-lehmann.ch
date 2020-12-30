@@ -293,8 +293,17 @@
 @include breakPointXS() {
   $BS: getBaseSize("XS");
   .portfolio {
+    &__contentWrapper {
+      padding-top: $BS * 256;
+    }
+
     &__title {
-      top: $BS * 4;
+      top: $BS * 92;
+      pointer-events: none;
+    }
+
+    &__projectTitle {
+      @include bsFontSize($BS, 24);
     }
   }
 }

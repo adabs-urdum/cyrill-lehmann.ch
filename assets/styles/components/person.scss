@@ -169,6 +169,7 @@
         box-sizing: border-box;
         height: calc(100% - #{$BS} * 6);
         min-width: $BS * 512;
+        max-width: 100%;
         border: none;
         padding: $BS * 16;
         appearance: none;
@@ -335,6 +336,39 @@
       display: inline-block;
       &:nth-child(even) {
         margin-right: 0;
+      }
+    }
+  }
+}
+
+@include breakPointXS() {
+  $BS: getBaseSize("XS");
+  .person {
+    &__helloContainer {
+      input {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+
+    &__helloWrapper {
+      padding: $BS * 32 $BS * 16;
+    }
+
+    &__infoWrapper {
+      padding: $BS * 128 $BS * 16;
+      background-color: $BlueDarkest;
+      color: $Blue;
+    }
+
+    &__hashtags {
+      flex-direction: column;
+      li {
+        color: $Blue;
+        padding-left: 0;
+        &::before {
+          display: none;
+        }
       }
     }
   }

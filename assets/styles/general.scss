@@ -345,3 +345,24 @@
     display: none;
   }
 }
+
+@include breakPointXS() {
+  $BS: getBaseSize("XS");
+
+  h1 {
+    @include bsFontSize($BS, 40);
+  }
+  h2 {
+    @include bsFontSize($BS, 36);
+  }
+  h3 {
+    @include bsFontSize($BS, 32);
+  }
+  h4 {
+    @include bsFontSize($BS, 26);
+  }
+  h5,
+  h6 {
+    @include bsFontSize($BS, 20);
+  }
+}

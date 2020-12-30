@@ -141,7 +141,7 @@ class Tour extends Overlay {
             </p>{" "}
             <img
               className="tour__customThemeImg tour__stageDivider"
-              src="./dist/img/wpcustomtheme.jpg"
+              src="/dist/img/wpcustomtheme.jpg"
               alt=""
             />
           </div>{" "}
@@ -251,7 +251,7 @@ class Tour extends Overlay {
             </p>{" "} */}
             <img
               className="tour__blenderImg tour__stageDivider"
-              src="./dist/img/blender.jpg"
+              src="/dist/img/blender.jpg"
               alt=""
             />
           </div>{" "}
