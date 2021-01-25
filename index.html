@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QJM6JZVSDN"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QJM6JZVSDN");
+    </script>
+
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -42,33 +57,7 @@
     <meta property="og:type" content="”website”" />
     <meta property="og:image" content="./dist/img/portfolio.jpg" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "https://www.google-analytics.com/analytics.js",
-        "ga"
-      );
-
-      ga("create", "G-QG52GC6XJC", "auto");
-      ga("send", "pageview");
-    </script>
-
-    <link rel="stylesheet" href="/dist/css/styles.min.css?v=14" />
+    <link rel="stylesheet" href="/dist/css/styles.min.css?v=16" />
   </head>
 
   <body>
@@ -105,6 +94,6 @@
       >
     </div>
 
-    <script src="/dist/js/main.js?v=15"></script>
+    <script src="/dist/js/main.js?v=16"></script>
   </body>
 </html>

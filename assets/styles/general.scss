@@ -127,6 +127,7 @@
   }
   .button,
   button {
+    cursor: url(../img/hover.png) 12 12, default !important;
     box-sizing: border-box;
     position: relative;
     display: inline-block;
