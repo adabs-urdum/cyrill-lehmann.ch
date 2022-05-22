@@ -97,9 +97,9 @@ class Person extends Overlay {
                 </ul>
                 <h3>Beiwerk</h3>
                 <ul className="person__hashtags">
-                  <li>Ski</li>
+                  <li>Hydroponik</li>
                   <li>Pilzzucht</li>
-                  <li>Chilizucht</li>
+                  <li>Skifahren</li>
                 </ul>
               </div>
               <div className="person__helloWrapper">

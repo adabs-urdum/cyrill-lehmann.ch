@@ -7,7 +7,9 @@ class Portfolio extends Overlay {
     super();
 
     this.controller = init.controller;
-    this.gace = init.gace;
+    if (init.gace) {
+      this.gace = init.gace;
+    }
     this.loader = init.loader;
     this.head = init.head;
     this.head.stopRenderLoop();
@@ -50,12 +52,14 @@ class Portfolio extends Overlay {
           target="_blank"
           rel="noopener"
           onClick={(e) => {
-            this.gace.triggerEvent(
-              "portfolio",
-              "linkout",
-              "project",
-              project.name
-            );
+            if (this.gace) {
+              this.gace.triggerEvent(
+                "portfolio",
+                "linkout",
+                "project",
+                project.name
+              );
+            }
           }}
         >
           <div className="portfolio__projectContent">
