@@ -1,5 +1,5 @@
 {
-  "name": "adabs/adabs-ch",
+  "name": "adabs/adabs",
   "type": "library",
   "description": "My personal frontend project setup",
   "keywords": [
@@ -9,7 +9,7 @@
   "homepage": "https://setup.adabs.ch",
   "authors": [
     {
-      "name": "Cyrill Lehmann",
+      "name": "adabsurdum",
       "email": "cyrill@adabs.ch",
       "homepage": "https://adabs.ch/",
       "role": "Developer"
