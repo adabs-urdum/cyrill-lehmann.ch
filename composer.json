@@ -1,19 +1,10 @@
 {
-  "type": "library",
-  "keywords": [
-    "boilerplate"
-  ],
-  "license": "",
-  "homepage": "https://setup.adabs.ch",
+  "name": "adabs-urdum/portfolio",
   "authors": [
     {
-      "name": "adabsurdum",
-      "email": "cyrill@adabs.ch",
-      "homepage": "https://adabs.ch/",
-      "role": "Developer"
+      "name": "Adabs Urdum",
+      "email": "cyrill@adabs.ch"
     }
   ],
-  "require": {
-    "php": ">=5.3.8"
-  }
+  "require": {}
 }
