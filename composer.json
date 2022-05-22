@@ -1,4 +1,5 @@
 {
+  "name": "adabs/adabs",
   "type": "library",
   "description": "My personal frontend project setup",
   "keywords": [
